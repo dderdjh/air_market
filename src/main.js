@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-//================= 第三方库 =================================================
+//================================= 第三方库 =================================================
 //Mint UI 
 import MintUI from "mint-ui"
 import "mint-ui/lib/style.css"
