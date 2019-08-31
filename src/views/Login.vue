@@ -8,9 +8,9 @@
         @focus.native.capture="showinfo(1)"
         @blur.native.capture="showinfo(0)"
         v-model="uname"
-        :class="[errorN==1?'errorStyle':'']"
+        :class="[errorN==1?'loginErrorStyle':'']"
       ></mt-field>
-      <span class="msgStyle" :class="[isActive==1?'showInfo':'']">合法的 邮箱地址 或 手机号码</span>
+      <span class="msgStyle" :class="[isActive==1?'loginShowInfo':'']">合法的 邮箱地址 或 手机号码</span>
       <mt-field
         class="inputStyle"
         type="password"
@@ -18,9 +18,9 @@
         @focus.native.capture="showinfo(2)"
         @blur.native.capture="showinfo(0)"
         v-model="upwd"
-        :class="[errorP==2?'errorStyle':'']"
+        :class="[errorP==2?'loginErrorStyle':'']"
       ></mt-field>
-      <span class="msgStyle" :class="[isActive==2?'showInfo':'']">6~12位字母与数字</span>
+      <span class="msgStyle" :class="[isActive==2?'loginShowInfo':'']">6~12位字母与数字</span>
       <mt-button class="loginBtn" plain type="primary" @click="login">登录</mt-button>
     </div>
   </div>
@@ -137,10 +137,10 @@ export default {
   opacity: 0;
 }
 /* 动态添加的样式 */
-.showInfo {
+.loginShowInfo {
   opacity: 1 !important;
 }
-.errorStyle {
+.loginErrorStyle {
   border-bottom: 2px solid #ff0000b0 !important;
 }
 </style>
