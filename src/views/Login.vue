@@ -70,12 +70,11 @@ export default {
         upwd
       };
       this.axios(url,{params:obj}).then(res=>{
-        console.log(res.data);
         var code = res.data.code;
         if(code==-1){
           this.$toast("用户名或密码错误");
         }else{
-          this.$router.push("/Reg");
+          this.$router.push("/Index");
         }
       })
     },
