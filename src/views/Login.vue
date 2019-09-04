@@ -22,6 +22,7 @@
       ></mt-field>
       <span class="msgStyle" :class="[isActive==2?'loginShowInfo':'']">6~12位字母与数字</span>
       <mt-button class="loginBtn" plain type="primary" @click="login">登录</mt-button>
+      <mt-button class="loginBtn" plain type="primary" @click="reg">注册</mt-button>
     </div>
   </div>
 </template>
@@ -38,14 +39,15 @@ export default {
     };
   },
   methods: {
-    test() {
-      this.$toast("希望成功");
+    reg(){
+      //点击注册按钮跳转到注册页
+      this.$router.push("/Reg");
     },
     login() {
-      //判断用户名密码是否为空
       let uname = this.uname;
       let upwd = this.upwd;
 
+      //判断用户名密码是否为空
       if (uname == "") {
         this.$toast({
           message: "用户名空着呢",
@@ -60,6 +62,22 @@ export default {
         });
         return;
       }
+
+      //发送ajax
+      var url = "login";
+      var obj = {
+        uname,
+        upwd
+      };
+      this.axios(url,{params:obj}).then(res=>{
+        console.log(res.data);
+        var code = res.data.code;
+        if(code==-1){
+          this.$toast("用户名或密码错误");
+        }else{
+          this.$router.push("/Reg");
+        }
+      })
     },
     showinfo(n) {
       let regName = /^^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/i;
@@ -114,7 +132,7 @@ export default {
   width: 270px;
   flex-direction: column;
   align-items: center;
-  margin-top: 50%;
+  margin-top: 40%;
 }
 .login .inputStyle {
   width: 270px;
