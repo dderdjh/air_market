@@ -35,6 +35,7 @@ export default {
 
 <style scoped>
   .searchBar{
+    height: 32px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
