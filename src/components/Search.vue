@@ -3,7 +3,7 @@
     <div class="searchBar">
       <input class="searchInput" type="text" placeholder="搜索" v-model="value">
       <img src="../assets/cancel.png" class="cancelBtn" @click="cancel" v-if="isShow">
-      <img src="../assets/search.png" >
+      <img src="../assets/searcha.png" >
     </div>
   </div>
 </template>
@@ -35,12 +35,14 @@ export default {
 
 <style scoped>
   .searchBar{
+    width: 96%;
     height: 32px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     background-color: #12b1f01e;
-    position: relative;
+    position: fixed;
+    z-index: 999;
   }
   .searchInput{
     width: 90%;
@@ -49,6 +51,7 @@ export default {
     outline: 0;
     border:0; 
     border-radius: 16px;
+    
   }
   .cancelBtn{
     position: absolute;
