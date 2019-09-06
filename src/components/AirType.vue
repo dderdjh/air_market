@@ -32,8 +32,10 @@
     transition: background-size 1s;
   }
   .type-wrap div span {
-    margin: 0 10px 10px 0;
-    font-size: 1.5rem;
+    width: 33px;
+    margin: 0 18px 11px 0;
+    color: #212121c9;
+    font-size: 33px;
     font-weight: bolder;
     user-select: none;
   }
@@ -42,13 +44,13 @@
     background-size: 230%
   }
   .type-wrap .anti-air:active{
-    background-size: 180%
+    background-size: 150%
   }
   .type-wrap .sp-air:active{
-    background-size: 300%
+    background-size: 270%
   }
   .type-wrap .po-air:active{
-    background-size: 220%
+    background-size: 150%
   }
   .type-wrap .air{
     background: url("../assets/img/air.jpg") no-repeat center center/180%;
