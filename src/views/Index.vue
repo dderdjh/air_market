@@ -3,13 +3,23 @@
     <!-- search bar -->
     <search></search>
     <!-- 设置52px的高度 -->
-    <div style="margin-top:52px;"></div>
+    <!-- <div style="margin-top:52px;"></div> -->
     <mt-tab-container class="page-tabbar-container" v-model="active">
-      <mt-tab-container-item id="search"></mt-tab-container-item>
-      <mt-tab-container-item id="product"></mt-tab-container-item>
-      <mt-tab-container-item id="home"></mt-tab-container-item>
-      <mt-tab-container-item id="cart"></mt-tab-container-item>
-      <mt-tab-container-item id="me"></mt-tab-container-item>
+      <mt-tab-container-item id="search">
+        <searchpage></searchpage>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="product">
+        <productpage></productpage>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="home">
+        <homepage></homepage>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="cart">
+        <cartpage></cartpage>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="me">
+        <mepage></mepage>
+      </mt-tab-container-item>
     </mt-tab-container>
     <mt-tabbar v-model="active" fixed>
       <mt-tab-item id="search" @click.native="changeState(0)">
@@ -58,6 +68,11 @@
 //引入组件
 import Search from "../components/Search.vue";
 import TabBarIcon from "../components/TabBarIcon.vue"
+import SearchPage from "../components/SearchPage.vue"
+import ProductPage from "../components/ProductPage.vue"
+import HomePage from "../components/HomePage.vue"
+import CartPage from "../components/CartPage.vue"
+import MePage from "../components/MePage.vue"
 export default {
   data(){
     return{
@@ -85,6 +100,13 @@ export default {
   components:{
     "search":Search,
     "tabbaricon":TabBarIcon,
+    "searchpage":SearchPage,
+    "productpage":ProductPage,
+    "homepage":HomePage,
+    "cartpage":CartPage,
+    "mepage":MePage
+
+
   }
 }
 </script>

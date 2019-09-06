@@ -3,7 +3,7 @@
     <div class="searchBar">
       <input class="searchInput" type="text" placeholder="搜索" v-model="value">
       <img src="../assets/cancel.png" class="cancelBtn" @click="cancel" v-if="isShow">
-      <img src="../assets/search.png" >
+      <img src="../assets/searcha.png" >
     </div>
   </div>
 </template>
