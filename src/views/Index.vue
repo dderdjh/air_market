@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="pageContainer">
+  <div class="pageWrap">
     <!-- search bar -->
-    <search></search>
+    <search clase="searchBar"></search>
     <!-- 设置52px的高度 -->
-    <!-- <div style="margin-top:52px;"></div> -->
-    <mt-tab-container class="page-tabbar-container" v-model="active">
+    <div style="margin-top:52px;"></div>
+    <mt-tab-container class="page-tabbar-container" v-model="active" >
       <mt-tab-container-item id="search">
         <searchpage></searchpage>
       </mt-tab-container-item>
@@ -63,6 +64,7 @@
       我</mt-tab-item>
     </mt-tabbar>
   </div>
+  </div>
 </template>
 <script>
 //引入组件
@@ -110,3 +112,12 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .pageContainer{
+    overflow: hidden;
+  }
+  .pageWrap{
+     overflow:auto;
+     padding-bottom: 60px;
+  }
+</style>

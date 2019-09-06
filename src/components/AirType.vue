@@ -17,6 +17,7 @@
 <style scoped>
   .type-wrap{
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
   }
   .type-wrap div{
