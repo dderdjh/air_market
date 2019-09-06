@@ -1,3 +1,13 @@
+/* 项目字体 */
+@font-face{
+  font-family: "yzgf";
+  src:url("./font/yzgf.ttf");
+}
+
+.font-yzgf{
+  font-family: "yzgf";
+}
 html,body {
   height: 100%;
+  font-family: "yzgf";
 }
