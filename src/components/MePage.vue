@@ -8,7 +8,9 @@
         <img src="../assets/avatar/i5.png" />
       </div>
       <div class="info">
-        <mt-popup v-model="popupVisible" position="right">.有2</mt-popup>
+        <span>账号: tom@tom.tom</span>
+        <span>主箱号码: A9023</span>
+        <span>剩余置换量: 100立方</span>
       </div>
     </div>
   </div>
@@ -17,8 +19,7 @@
 export default {
   data() {
     return {
-      melist: [],
-      popupVisible: false
+      melist: [1,2,4],
     };
   }
 };
@@ -70,11 +71,27 @@ export default {
   top: 10px;
 }
 .info {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
   position: absolute;
   top: 207px;
   width: 96%;
-  height: 300px;
+  height: auto;
   border-radius: 10px 10px 0 0;
   background: #ccc;
+}
+.info span{
+  width: 92%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  display: block;
+  font-weight: bold;
+  font-size: 17px;
+  border: 2px solid #00aaef;
+  border-radius: 5px;
+  margin: 10px;
 }
 </style>
