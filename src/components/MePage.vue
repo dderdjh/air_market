@@ -2,7 +2,8 @@
   <div class="pageWrap">
     <div class="meWrap">
       <div class="bakcGround">
-        <img src="../assets/level2.png" class="level" />
+        <img src="../assets/level1.png" class="level" />
+        <img src="../assets/config.png" class="config">
       </div>
       <div class="avatar">
         <img src="../assets/avatar/i5.png" />
@@ -70,6 +71,11 @@ export default {
   right: 10px;
   top: 10px;
 }
+.config {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
 .info {
   display: flex;
   flex-direction: column;
@@ -80,7 +86,7 @@ export default {
   width: 96%;
   height: auto;
   border-radius: 10px 10px 0 0;
-  background: #ccc;
+  background: #39a8c317;
 }
 .info span{
   width: 92%;
