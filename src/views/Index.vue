@@ -123,7 +123,8 @@ export default {
     overflow: hidden;
   }
   .pageWrap{
-     overflow:auto;
-     padding-bottom: 60px;
+    height:100vh;
+    overflow:auto;
+    padding-bottom: 60px;
   }
 </style>
