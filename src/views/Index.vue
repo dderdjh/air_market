@@ -2,9 +2,9 @@
   <div class="pageContainer">
   <div class="pageWrap">
     <!-- search bar -->
-    <search clase="searchBar"></search>
+    <search v-show="isMe"></search>
     <!-- 设置52px的高度 -->
-    <div style="margin-top:52px;"></div>
+    <div style="margin-top:52px;" v-show="isMe"></div>
     <mt-tab-container class="page-tabbar-container" v-model="active" >
       <mt-tab-container-item id="search">
         <searchpage></searchpage>
@@ -85,7 +85,8 @@ export default {
         {isSelect:true},
         {isSelect:false},
         {isSelect:false},
-      ]
+      ],
+      isMe:true,
     }
   },
   methods: {
@@ -95,6 +96,11 @@ export default {
           this.currentIndex[i].isSelect=true;
         }else{
           this.currentIndex[i].isSelect=false;
+        }
+        if(this.currentIndex[4].isSelect){
+          this.isMe = false;
+        }else{
+          this.isMe = true;
         }
       }
     }
@@ -117,7 +123,8 @@ export default {
     overflow: hidden;
   }
   .pageWrap{
-     overflow:auto;
-     padding-bottom: 60px;
+    height:100vh;
+    overflow:auto;
+    padding-bottom: 60px;
   }
 </style>
