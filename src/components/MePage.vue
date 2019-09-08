@@ -37,13 +37,15 @@ export default {
   box-sizing: border-box;
   width: 120px;
   height: 120px;
-  background-color: #35a4c0;
+  /* background-color: #35a4c0; */
+  background: linear-gradient(135deg,#76cce0,#2193b0) left center/200% 200%;
   border-radius: 50%;
   border: 5px solid #fff;
   padding: 10px;
   position: fixed;
   top: 106px;
   z-index: 10;
+  animation: move 5s infinite;
 }
 .avatar img {
   width: 80px;
@@ -53,24 +55,45 @@ export default {
   margin-top: -40px;
   margin-left: -40px;
 }
-.bakcGround {
+/* .bakcGround {
   position: fixed;
   width: 100%;
   height: 200px;
-  background: #2193b0; /* fallback for old browsers */
+  background: #2193b0; 
   background: linear-gradient(
     to bottom,
     #6dd5ed,
     #2193b0
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  ); 
   border-radius: 0 0 10px 10px;
   z-index: 10;
+} */
+.bakcGround {
+  position: fixed;
+  width: 100%;
+  height: 200px;
+  z-index: 10;
+  border-radius: 0 0 10px 10px;
+  background: #2193b0; 
+  background: linear-gradient(135deg,#76cce0,#2193b0) left center/400% 400%;
+  animation: move 5s infinite;
+}
+@keyframes move {
+	0%,
+	100% {
+		background-position-x: left;
+	}
+	50% {
+		background-position-x: right;
+	}
 }
 .level {
   position: absolute;
   right: 10px;
   top: 10px;
+  
 }
+
 .config {
   position: absolute;
   right: 10px;
