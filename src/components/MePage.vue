@@ -34,7 +34,7 @@ export default {
       title: {
         text: "气体购买统计"
       },
-      tooltip: {},
+      tooltip: {}, 
       xAxis: {
         data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
       },
