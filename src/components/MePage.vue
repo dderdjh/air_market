@@ -3,7 +3,7 @@
     <div class="meWrap">
       <div class="bakcGround">
         <img src="../assets/level1.png" class="level" />
-        <img src="../assets/config.png" class="config">
+        <img src="../assets/config.png" class="config" />
       </div>
       <div class="avatar">
         <img src="../assets/avatar/i5.png" />
@@ -12,17 +12,45 @@
         <span>账号: tom@tom.tom</span>
         <span>主箱号码: A9023</span>
         <span>剩余置换量: 100立方</span>
+        <div id="chart" ref="chart" style="width:92%; height: 200px"></div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import echarts from 'echarts';
+// import echarts from 'echarts/lib/echarts'; // 引入基本模板
+// import bar from 'echarts/lib/chart/bar';   // 引入柱状图组件
+
 export default {
   data() {
     return {
-      melist: [1,2,4],
+      myChart: null
     };
-  }
+  },
+  mounted() {
+    this.myChart = echarts.init(this.$refs.chart);
+    this.myChart.setOption({
+      title: {
+        text: "气体购买统计"
+      },
+      tooltip: {},
+      xAxis: {
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+      },
+      yAxis: {},
+      series: [
+        {
+          name: "销量",
+          type: "line",
+          data: [5, 20, 36, 10, 10, 29],
+          width:"100%",
+          color: "pink"
+        }
+      ]
+    });
+  },
+  methods: {}
 };
 </script>
 <style scoped>
@@ -38,7 +66,7 @@ export default {
   width: 120px;
   height: 120px;
   /* background-color: #35a4c0; */
-  background: linear-gradient(135deg,#76cce0,#0085a7) left center/200% 200%;
+  background: linear-gradient(135deg, #76cce0, #0085a7) left center/200% 200%;
   border-radius: 50%;
   border: 5px solid #fff;
   padding: 10px;
@@ -74,24 +102,23 @@ export default {
   height: 200px;
   z-index: 10;
   border-radius: 0 0 10px 10px;
-  background: #2193b0; 
-  background: linear-gradient(135deg,#76cce0,#0085a7) left center/400% 400%;
+  /* background: #2193b0; */
+  background: linear-gradient(135deg, #76cce0, #0085a7) left center/400% 400%;
   animation: move 5s infinite;
 }
 @keyframes move {
-	0%,
-	100% {
-		background-position-x: left;
-	}
-	50% {
-		background-position-x: right;
-	}
+  0%,
+  100% {
+    background-position-x: left;
+  }
+  50% {
+    background-position-x: right;
+  }
 }
 .level {
   position: absolute;
   right: 10px;
   top: 10px;
-  
 }
 
 .config {
@@ -102,16 +129,16 @@ export default {
 .info {
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: center;
   position: absolute;
   top: 207px;
   width: 96%;
   height: auto;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   background: #39a8c317;
 }
-.info span{
+.info span {
   width: 92%;
   height: 60px;
   text-align: center;
@@ -119,8 +146,12 @@ export default {
   display: block;
   font-weight: bold;
   font-size: 17px;
-  border: 2px solid #00aaef;
+  border: 1px solid #00aaef;
   border-radius: 5px;
   margin: 10px;
 }
+.info span:last-child{
+  position: relative;
+}
+
 </style>
