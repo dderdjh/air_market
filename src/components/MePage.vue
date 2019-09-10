@@ -1,5 +1,5 @@
 <template>
-  <div class="pageWrap">
+  <div class="pageWrap" id="pageWrap">
     <div class="meWrap">
       <div class="bakcGround">
         <img src="../assets/level1.png" class="level" />
@@ -12,7 +12,7 @@
         <span>账号: tom@tom.tom</span>
         <span>主箱号码: A9023</span>
         <span>剩余置换量: 100立方</span>
-        <div id="chart" ref="chart" style="width:92%; height: 200px"></div>
+        <div id="chart" ref="chart" style=" height: 200px;"></div>
       </div>
     </div>
   </div>
@@ -36,19 +36,23 @@ export default {
       },
       tooltip: {}, 
       xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        data: ["氧气", "古空气", "毒气", "其他气体"]
       },
       yAxis: {},
       series: [
         {
           name: "销量",
-          type: "line",
-          data: [5, 20, 36, 10, 10, 29],
-          width:"100%",
-          color: "pink"
+          type: "bar",
+          data: [5, 10, 36, 10],
+          color: "#00aaef"
         }
       ]
     });
+    
+    var resize = {
+        width: window.innerWidth-20,
+    };
+    this.myChart.resize(resize);
   },
   methods: {}
 };
@@ -131,10 +135,10 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 207px;
   width: 96%;
-  height: auto;
+  height: 460px;
   border-radius: 10px;
   background: #39a8c317;
 }
@@ -153,5 +157,5 @@ export default {
 .info span:last-child{
   position: relative;
 }
-
+ 
 </style>
