@@ -50,7 +50,7 @@ export default {
     });
     
     var resize = {
-        width: window.innerWidth-20,
+        width: `${window.innerWidth*0.9}`,
     };
     this.myChart.resize(resize);
   },
@@ -70,7 +70,7 @@ export default {
   width: 120px;
   height: 120px;
   /* background-color: #35a4c0; */
-  background: linear-gradient(135deg, #76cce0, #0085a7) left center/200% 200%;
+  background: linear-gradient(135deg, #a6deea, #0085a7) left center/200% 200%;
   border-radius: 50%;
   border: 5px solid #fff;
   padding: 10px;
@@ -107,7 +107,7 @@ export default {
   z-index: 10;
   border-radius: 0 0 10px 10px;
   /* background: #2193b0; */
-  background: linear-gradient(135deg, #76cce0, #0085a7) left center/400% 400%;
+  background: linear-gradient(135deg, #a6deea, #0085a7) left center/400% 400%;
   animation: move 5s infinite;
 }
 @keyframes move {
@@ -135,10 +135,10 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 207px;
   width: 96%;
-  height: 460px;
+  height: auto;
   border-radius: 10px;
   background: #39a8c317;
 }
