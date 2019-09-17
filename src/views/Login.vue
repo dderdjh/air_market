@@ -10,7 +10,7 @@
         v-model="uname"
         :class="[errorN==1?'loginErrorStyle':'']"
       ></mt-field>
-      <span class="msgStyle" :class="[isActive==1?'loginShowInfo':'']">合法的 邮箱地址 或 手机号码</span>
+      <span class="msgStyle" :class="[isActive==1?'loginShowInfo':'']">合法的 邮箱地址 或 公民编号</span>
       <mt-field
         class="inputStyle"
         type="password"

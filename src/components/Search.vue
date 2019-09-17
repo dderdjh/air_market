@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="searchBarWrap">
     <div class="searchBar">
       <input class="searchInput" type="text" placeholder="搜索" v-model="value">
       <img src="../assets/cancel.png" class="cancelBtn" @click="cancel" v-if="isShow">
@@ -34,6 +34,14 @@ export default {
 </script>
 
 <style scoped>
+  .searchBarWrap{
+    width:100%;
+    height: 51px;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9999;
+    background: white;
+  }
   .searchBar{
     width: 96%;
     height: 32px;
