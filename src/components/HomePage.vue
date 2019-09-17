@@ -10,7 +10,8 @@ import AirType from "./AirType.vue";
 export default {
   data(){
     return{
-      
+      list:[],
+      pno:0
     }
   },
   components: {

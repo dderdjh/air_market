@@ -50,4 +50,25 @@ server.get("/login",(req,res)=>{
       res.send({code:1,msg:"登录成功"});
     }
   });
+});
+
+//功能:分页显示商品
+server.get("/gas",(req,res)=>{
+  var pno = req.query.pno;
+  var pageSize = req.query.pageSize;
+  //默认显示数量
+  if(!pno){
+    pno = 1;
+  };
+  if(!pageSize){
+    pageSize = 4;
+  };
+  var sql = "SELECT gid,title,subtitle,price,img_url FROM am_gas LIMIT ?,?";
+  var offset = (pno - 1) * pageSize;
+  pageSize = parseInt(pageSize);
+  //发送query
+  pool.query(sql,[offset,pageSize],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,msg:"查询成功",data:result});
+  })
 })
