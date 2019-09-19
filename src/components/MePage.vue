@@ -1,6 +1,7 @@
 <template>
   <div class="pageWrap" id="pageWrap">
     <div class="meWrap">
+
       <div class="bakcGround">
         <img src="../assets/level1.png" class="level" />
         <img src="../assets/config.png" class="config" />
