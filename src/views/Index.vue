@@ -22,6 +22,7 @@
         <mepage></mepage>
       </mt-tab-container-item>
     </mt-tab-container>
+    <!-- 底部导航 -->
     <mt-tabbar v-model="active" fixed>
       <mt-tab-item id="search" @click.native="changeState(0)">
         <tabbaricon
