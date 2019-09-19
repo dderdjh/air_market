@@ -71,4 +71,7 @@ server.get("/gas",(req,res)=>{
     if(err) throw err;
     res.send({code:1,msg:"查询成功",data:result});
   })
-})
+});
+
+//功能:按类型搜索商品
+
