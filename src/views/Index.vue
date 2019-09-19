@@ -121,6 +121,7 @@ export default {
 <style scoped>
   .pageContainer{
     overflow: hidden;
+    
   }
   .pageWrap{
     height:100vh;

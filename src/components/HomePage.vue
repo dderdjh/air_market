@@ -44,6 +44,7 @@ export default {
         this.list = rows;
       });
     }
-  }
+  },
+ 
 };
 </script>

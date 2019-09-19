@@ -8,7 +8,7 @@ import Reg from "./views/Reg.vue"
 import Index from "./views/Index.vue"
 
 ///==========组件测试
-import AirType from "./components/AirType.vue"
+// import AirType from "./components/AirType.vue"
 
 
 Vue.use(Router)
@@ -30,11 +30,8 @@ export default new Router({
       name: "index",
       component: Index
     },
-    {
-      path: "/AirType",
-      name: "airtype",
-      component: AirType
-    }
+    
   ],
   
+
 })
