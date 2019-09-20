@@ -10,7 +10,7 @@
       <span>其它气体</span>
     </div>
     <div class="po-air">
-      <span>毒气</span>
+      <span>神秘气体</span>
     </div>
   </div>
 </template>

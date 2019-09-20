@@ -63,7 +63,7 @@ server.get("/gas",(req,res)=>{
   if(!pageSize){
     pageSize = 4;
   };
-  var sql = "SELECT gid,title,subtitle,price,img_url FROM am_gas LIMIT ?,?";
+  var sql = "SELECT gid,title,subtitle,price,img_url FROM am_gas ORDER BY RAND() LIMIT ?,?";
   var offset = (pno - 1) * pageSize;
   pageSize = parseInt(pageSize);
   //发送query
