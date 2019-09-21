@@ -11,13 +11,13 @@ export default {
       gasType1:0
     }
   },
-  created(){
+  updated(){
     this.bus.$on("typeSearch", this.changeType.bind(this));
-    console.log(this.gasType1)
   },
   methods: {
     changeType(gasType) {
       this.gasType1 = gasType;
+      console.log(this.gasType1)
     },
   },
   components:{
