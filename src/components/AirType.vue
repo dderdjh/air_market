@@ -1,19 +1,47 @@
 <template>
   <div class="type-wrap">
-    <div class="air">
+    <div class="air" @click="typeSearchOxigen">
       <span>氧气</span>
     </div>
-    <div class="anti-air">
+    <div class="anti-air" @click="typeSearchOld">
       <span>古空气</span>
     </div>
-    <div class="sp-air">
+    <div class="sp-air" @click="typeSearchOther">
       <span>其它气体</span>
     </div>
-    <div class="po-air">
+    <div class="po-air" @click="typeSearchMystery">
       <span>神秘气体</span>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      gasType:0
+    }
+  },
+  methods:{
+    typeSearchOxigen(){
+      this.gasType = 1;
+      // this.bus.$emit("typeSearch",this.gasType);
+      this.bus.$emit("goActive")
+    },
+    typeSearchOld(){
+      this.gasType = 2;
+      // this.bus.$emit("typeSearch",this.gasType);
+    },
+    typeSearchOther(){
+      this.gasType = 3;
+      // this.bus.$emit("typeSearch",this.gasType);
+    },
+    typeSearchMystery(){
+      this.gasType = 4;
+      // this.bus.$emit("typeSearch",this.gasType);
+    },
+  }
+}
+</script>
 <style scoped>
   .type-wrap{
     display: flex;

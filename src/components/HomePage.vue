@@ -19,8 +19,5 @@ export default {
     airtype: AirType,
     porductloader: PorductLoader
   },
-  methods: {
-    
-  }
 };
 </script>

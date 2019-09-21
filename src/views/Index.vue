@@ -90,7 +90,16 @@ export default {
       isMe:true,
     }
   },
+  created(){
+    this.bus.$on("goActive",this.goActive.bind(this));
+  },
   methods: {
+    //airType点击转换
+    goActive(){
+      this.active = "search";
+      this.currentIndex[0].isSelect = true;
+      this.currentIndex[2].isSelect = false;
+    },
     changeState(n){
       for(var i=0;i<this.currentIndex.length;i++){
         if(n==i){

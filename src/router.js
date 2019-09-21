@@ -8,7 +8,7 @@ import Reg from "./views/Reg.vue"
 import Index from "./views/Index.vue"
 
 ///==========组件测试
-import AirType from "./components/AirType.vue"
+import SearchPage from "./components/SearchPage.vue"
 
 
 Vue.use(Router)
@@ -31,9 +31,10 @@ export default new Router({
       component: Index
     },
     {
-      path: "/AirType",
-      name: "airtype",
-      component: AirType
+      path: "/SearchPage",
+      name: "aseachpage",
+      component: SearchPage,
+      
     }
   ],
   

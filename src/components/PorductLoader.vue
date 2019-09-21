@@ -24,9 +24,11 @@ export default {
   data() {
     return {
       list: [],
-      pno: 0
+      pno: 0,
+      gasType:0
     };
   },
+  props:["type"],
   created() {
     this.loadMore();
   },
@@ -34,10 +36,23 @@ export default {
     loadMore() {
       //功能:当组件创建成功后获取第一页数据
       // 1.创建一个url地址
-      var url = "gas";
+      if (this.gasType == 0) {
+        var url = "gas";
+        this.pno++;
+        var obj = {
+          pno: this.pno
+        };
+      } else {
+        var url = "sreach_gas";
+        this.pno++;
+        this.this.gasType = this.gasType;
+        var obj = {
+          pno: this.pno,
+          gasType: this.gasType
+        };
+      }
       //1.1.将当前页码加一
-      this.pno++;
-      var obj = { pno: this.pno };
+
       // 2.发送afax请求获取第一页数据
       this.axios.get(url, { params: obj }).then(res => {
         // 3.将数据保存在data中
@@ -56,14 +71,13 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.infin-list{
+.infin-list {
   text-decoration: 0;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 .goods {
   width: 47%;

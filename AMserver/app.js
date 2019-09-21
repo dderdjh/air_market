@@ -69,9 +69,31 @@ server.get("/gas",(req,res)=>{
   //发送query
   pool.query(sql,[offset,pageSize],(err,result)=>{
     if(err) throw err;
-    res.send({code:1,msg:"查询成功",data:result});
-  })
+    //判断搜索结果
+    if(result.length>0){
+      res.send({code:1,msg:"查询成功",data:result});
+    }else if(result.length==0){
+      res.send({code:-1,msg:"结果为空"});
+    };
+  });
 });
 
 //功能:按类型搜索商品
-
+server.get("/sreach_gas",(req,res)=>{
+  var gasType = req.query.gasType;
+  var pno = req.query.pno;
+  var pageSize = req.query.pageSize;
+  if(!pno){pno=1};
+  if(!pageSize){pageSize=4};
+  var sql = "SELECT gid,title,subtitle,price,img_url FROM am_gas WHERE family_id = ?  LIMIT ?,?";
+  var offset = (pno - 1) * pageSize;
+  pageSize = parseInt(pageSize);
+  pool.query(sql,[gasType,offset,pageSize],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,msg:"查询成功",data:result});
+    }else if(result.length==0){
+      res.send({code:-1,msg:"结果为空"});
+    };
+  });
+});
