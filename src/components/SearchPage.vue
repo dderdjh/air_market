@@ -1,6 +1,6 @@
 <template>
   <div>
-    <porductloader ></porductloader>
+    <porductloader :type="this.gasType"></porductloader>
   </div>
 </template>
 <script>
@@ -8,16 +8,17 @@ import PorductLoader from "./PorductLoader.vue";
 export default {
   data(){
     return{
-      gasType1:0
+      gasType:0
     }
   },
-  updated(){
+  created(){
+    //将类型从airtype传入此主键
     this.bus.$on("typeSearch", this.changeType.bind(this));
   },
   methods: {
     changeType(gasType) {
-      this.gasType1 = gasType;
-      console.log(this.gasType1)
+      this.gasType = gasType;
+      console.log(this.gasType,"search")
     },
   },
   components:{

@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+import { watch } from 'fs';
 export default {
   data() {
     return {
@@ -29,8 +30,9 @@ export default {
     };
   },
   props:["type"],
-  created() {
-    this.loadMore();
+  updated() {
+    // this.loadMore();
+    console.log(this.type,2);
   },
   methods: {
     loadMore() {
@@ -45,7 +47,6 @@ export default {
       } else {
         var url = "sreach_gas";
         this.pno++;
-        this.this.gasType = this.gasType;
         var obj = {
           pno: this.pno,
           gasType: this.gasType
@@ -62,7 +63,13 @@ export default {
         this.list = rows;
       });
     }
-  }
+  },//methods end
+  watch:{
+    type(){
+      this.$set(this.data,gasType,this.type)
+      console.log(this.gasType,"loarder,watch")
+    }
+  }//watch end
 };
 </script>
 <style scoped>

@@ -29,17 +29,17 @@ export default {
     },
     typeSearchOld(){
       this.gasType = 2;
-      // this.bus.$emit("typeSearch",this.gasType);
+      this.bus.$emit("typeSearch",this.gasType);
       this.bus.$emit("goActive")
     },
     typeSearchOther(){
       this.gasType = 3;
-      // this.bus.$emit("typeSearch",this.gasType);
+      this.bus.$emit("typeSearch",this.gasType);
       this.bus.$emit("goActive")
     },
     typeSearchMystery(){
       this.gasType = 4;
-      // this.bus.$emit("typeSearch",this.gasType);
+      this.bus.$emit("typeSearch",this.gasType);
       this.bus.$emit("goActive")
     },
   }
