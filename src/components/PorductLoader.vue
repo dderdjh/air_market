@@ -26,19 +26,23 @@ export default {
     return {
       list: [],
       pno: 0,
-      gasType:0
+      gasType:[0]
     };
   },
   props:["type"],
+  created(){
+    // this.loadMore();
+    console.log("showed")
+  },
   updated() {
     // this.loadMore();
-    console.log(this.type,2);
+    console.log(this.type,"update");
   },
   methods: {
     loadMore() {
       //功能:当组件创建成功后获取第一页数据
       // 1.创建一个url地址
-      if (this.gasType == 0) {
+      if (this.gasType[0] == 0) {
         var url = "gas";
         this.pno++;
         var obj = {
@@ -49,7 +53,7 @@ export default {
         this.pno++;
         var obj = {
           pno: this.pno,
-          gasType: this.gasType
+          gasType: this.gasType[0]
         };
       }
       //1.1.将当前页码加一
@@ -66,8 +70,9 @@ export default {
   },//methods end
   watch:{
     type(){
-      this.$set(this.data,gasType,this.type)
-      console.log(this.gasType,"loarder,watch")
+      // this.$set(this.gasType,0,this.type)
+      this.gasType[0] = this.type;
+      console.log(this.gasType[0],"loarder,watch")
     }
   }//watch end
 };

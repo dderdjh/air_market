@@ -1,6 +1,6 @@
 <template>
   <div>
-    <porductloader :type="this.gasType"></porductloader>
+    <porductloader :type="this.gasType" v-if="isRefresh"></porductloader>
   </div>
 </template>
 <script>
@@ -8,7 +8,8 @@ import PorductLoader from "./PorductLoader.vue";
 export default {
   data(){
     return{
-      gasType:0
+      gasType:0,
+      isRefresh: false
     }
   },
   created(){
@@ -18,6 +19,7 @@ export default {
   methods: {
     changeType(gasType) {
       this.gasType = gasType;
+      this.isRefresh = true;
       console.log(this.gasType,"search")
     },
   },
