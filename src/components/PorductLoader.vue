@@ -69,8 +69,12 @@ export default {
         // 3.将数据保存在data中
         // console.log(res.data.data);
         // this.list.concat() = res.data.data;
-        var rows = this.list.concat(res.data.data); //页的拼接
-        this.list = rows;
+        if(res.data.code==1){
+          var rows = this.list.concat(res.data.data); //页的拼接
+          this.list = rows;
+        }else if(res.data.code==-1){
+          return;
+        }
       });
     },
   }, //methods end
