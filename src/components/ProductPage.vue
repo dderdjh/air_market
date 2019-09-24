@@ -2,7 +2,7 @@
   <div class="productWrap">
     <div class="product">
       <div class="porductImageWrap">
-        <img src="../assets/img/air.jpg" class="porductImage" />
+        <img src="../assets/img/old.jpg" class="porductImage" />
       </div>
       <h2>中级氧气</h2>
       <h3>满足日常需求,同时加强吸入时的享受</h3>
@@ -19,10 +19,11 @@
 </template>
 <style scoped>
 .productWrap {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background: #39a8c317;
+  padding: 10px 10px 32px 10px;
+  /* background: #39a8c317; */
 }
 .porductImageWrap {
   width: 100%;
@@ -64,6 +65,7 @@
   height: 40px;
   background: linear-gradient(90deg, #2193b0, #27b0d0);
   border-radius: 0 10px 10px 0;
+  box-shadow: 2px 0px 6px 1px #2193b0;
   color:white;
   font-size: 1.2rem;
   line-height: 40px;
@@ -74,6 +76,19 @@
   width: 100px;
   border-radius: 10px 0 0 10px;
   background: linear-gradient(-90deg, #2193b0, #c26dd2a8);
+  /* box-shadow: 1px 0px 10px 0px #2193b0; */
+  animation: shadow 3s infinite;
+}
+@keyframes shadow{
+  0%{
+    box-shadow: 2px 0px 10px 0px #2193b0;
+  }
+  50%{
+    box-shadow: -15px 0px 10px 5px #c26dd2a8;
+  }
+  100%{
+    box-shadow: 2px 0px 10px 0px #2193b0;
+  }
 }
 .productPrice{
   display: inline-block;

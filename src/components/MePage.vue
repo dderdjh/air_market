@@ -141,7 +141,7 @@ export default {
   width: 96%;
   height: auto;
   border-radius: 10px;
-  background: #39a8c317;
+  background: #4cb4ce30;
 }
 .info span {
   width: 92%;

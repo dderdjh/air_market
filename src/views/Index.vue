@@ -153,5 +153,6 @@ export default {
     height:100vh;
     overflow:auto;
     padding-bottom: 60px;
+    background: #39a8c317;
   }
 </style>
