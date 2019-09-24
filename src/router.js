@@ -8,7 +8,7 @@ import Reg from "./views/Reg.vue"
 import Index from "./views/Index.vue"
 
 ///==========组件测试
-import SearchPage from "./components/SearchPage.vue"
+import ProductPage from "./components/ProductPage.vue"
 
 
 Vue.use(Router)
@@ -31,9 +31,9 @@ export default new Router({
       component: Index
     },
     {
-      path: "/SearchPage",
+      path: "/ProductPage",
       name: "aseachpage",
-      component: SearchPage,
+      component: ProductPage,
       
     }
   ],
