@@ -20,29 +20,35 @@
   </div>
 </template>
 <script>
-import { watch } from 'fs';
+import { watch } from "fs";
 export default {
   data() {
     return {
       list: [],
       pno: 0,
-      gasType:[0]
+      gasType: 0,
+      typeC: 0,
     };
   },
-  props:["type"],
-  created(){
-    // this.loadMore();
-    console.log("showed")
+  props: ["type",'refresh'],
+  created() {
+    console.log("showed");
+    // console.log('get from index this.refresh'+this.refresh)
+    // this.typeC = this.$store.getters.getType || 0
+    this.loadMore();
   },
   updated() {
-    // this.loadMore();
-    console.log(this.type,"update");
+    // console.log(this.typeC, "update");
+    // this.gasType[0] = this.type;
   },
   methods: {
     loadMore() {
+      this.typeC = this.$store.getters.getType;
+      console.log(this.typeC)
+      this.gasType = this.typeC;
       //功能:当组件创建成功后获取第一页数据
       // 1.创建一个url地址
-      if (this.gasType[0] == 0) {
+      if (this.gasType == 0) {
         var url = "gas";
         this.pno++;
         var obj = {
@@ -53,7 +59,7 @@ export default {
         this.pno++;
         var obj = {
           pno: this.pno,
-          gasType: this.gasType[0]
+          gasType: this.gasType
         };
       }
       //1.1.将当前页码加一
@@ -66,15 +72,10 @@ export default {
         var rows = this.list.concat(res.data.data); //页的拼接
         this.list = rows;
       });
-    }
-  },//methods end
-  watch:{
-    type(){
-      // this.$set(this.gasType,0,this.type)
-      this.gasType[0] = this.type;
-      console.log(this.gasType[0],"loarder,watch")
-    }
-  }//watch end
+    },
+  }, //methods end
+  watch: {
+  } //watch end
 };
 </script>
 <style scoped>

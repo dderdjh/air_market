@@ -89,6 +89,7 @@ server.get("/sreach_gas",(req,res)=>{
   var offset = (pno - 1) * pageSize;
   pageSize = parseInt(pageSize);
   pool.query(sql,[gasType,offset,pageSize],(err,result)=>{
+    console.log(result);
     if(err) throw err;
     if(result.length>0){
       res.send({code:1,msg:"查询成功",data:result});

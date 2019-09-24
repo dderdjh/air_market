@@ -7,7 +7,7 @@
     <div style="margin-top:52px;" v-show="isMe"></div>
     <mt-tab-container class="page-tabbar-container" v-model="active" >
       <mt-tab-container-item id="search">
-        <searchpage></searchpage>
+        <searchpage :refresh="refresh"></searchpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="product">
         <productpage></productpage>
@@ -88,10 +88,22 @@ export default {
         {isSelect:false},
       ],
       isMe:true,
+      refresh:false
     }
   },
   created(){
     this.bus.$on("goActive",this.goActive.bind(this));
+  },
+  watch:{
+    active() {
+      if(this.active!='search'){
+        this.refresh = false;
+      }
+      else {
+        this.refresh = true;
+      }
+      console.log('index change refresh reference'+this.refresh)
+    }
   },
   methods: {
     //airType点击转换
@@ -113,6 +125,11 @@ export default {
           this.isMe = true;
         }
       }
+    },
+    changeRefresh() {
+      console.log('come back from search and before this.refresh='+this.refresh)
+      this.refresh = false;
+      console.log('come back from search and after this.refresh='+this.refresh)
     }
   },
   components:{
