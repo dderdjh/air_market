@@ -2,18 +2,18 @@
   <div class="productWrap">
     <div class="product">
       <div class="porductImageWrap">
-        <img :src="'http://127.0.0.1:8080/'+this.list[0].img_url" class="porductImage" />
+        <img :src="this.imgUrl" class="porductImage" />
       </div>
-      <h2>{{this.list[0].title}}</h2>
-      <h3>{{this.list[0].subtitle}}</h3>
-      <h3 class="productPrice">{{this.list[0].price}} 兑换量</h3>
+      <h2>{{this.title}}</h2>
+      <h3>{{this.subtitle}}</h3>
+      <h3 class="productPrice">{{this.price}} 兑换量</h3>
       <div class="btns">
         <div class="cartBtn">加入购物车</div>
         <div class="BuyBtn">立即购入</div>
       </div>
       <h4 class="description">
         商品介绍 :
-        <p>{{this.list[0].details}}</p>
+        <p>{{this.details}}</p>
       </h4>
     </div>
   </div>
@@ -23,13 +23,20 @@ export default {
   data() {
     return {
       gid: 0,
-      list:[]
+      imgUrl:"",
+      title:"",
+      subtitle:"",
+      price:"",
+      details:"",
+      soldCount:""
     };
   },
-  beforeMount() {},
+  updated() {
+    console.log(2132132)
+  },
   created() {
     this.loadProduct();
-    console.log("product loadedZ",this.gid);
+    console.log("product loaded",this.gid);
   },
   methods: {
     loadProduct() {
@@ -40,8 +47,17 @@ export default {
       //发送请求
       this.axios.get(url,{params:obj})
       .then(res=>{
-        //保存返回值
-        this.list=res.data.data;
+        if(res.data.code==1){
+          //保存返回值
+          this.imgUrl = "http://127.0.0.1:8080/"+res.data.data[0].img_url;
+          this.title = res.data.data[0].title;
+          this.subtitle = res.data.data[0].subtitle;
+          this.price = res.data.data[0].price;
+          this.details = res.data.data[0].details;
+          this.soldCount = res.data.data[0].soldCount;
+        }else if(res.data.code==-1){
+          return;
+        }
       });
     }
   }

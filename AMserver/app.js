@@ -105,7 +105,7 @@ server.get("/detail",(req,res)=>{
   //获取客户端数据
   var gid = req.query.gid;
   //创建sql查找对应商品
-  var sql = "SELECT gid,title,subtitle,price,img_url,details FROM am_gas WHERE gid=?";
+  var sql = "SELECT gid,title,subtitle,price,img_url,details,sold_count FROM am_gas WHERE gid=?";
   pool.query(sql,[gid],(err,result)=>{
     if(err) throw err;
     if(result.length>0){
