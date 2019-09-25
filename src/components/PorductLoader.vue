@@ -6,7 +6,7 @@
       infinite-scroll-distance="10"
       class="infin-list"
     >
-      <div class="goods" v-for="(item,index) of list" :key="index" @click="toDetail">
+      <div class="goods" v-for="(item,index) of list" :key="index" @click="toDetail" :data-gid="item.gid">
         <!-- 商品图片 -->
         <img class="goods-img" :src="'http://127.0.0.1:8080/'+item.img_url" />
         <!-- 商品名称 -->
@@ -74,8 +74,9 @@ export default {
         }
       });
     },
-    toDetail(){
-      console.log(12);
+    toDetail(event){
+      var gid = event.currentTarget.dataset.gid;
+      this.$store.commit("setGid",gid);
       this.bus.$emit("goActive",this.tabName);
     }
   }, //methods end

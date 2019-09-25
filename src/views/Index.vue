@@ -10,7 +10,7 @@
         <searchpage :refresh="refresh"></searchpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="product">
-        <productpage></productpage>
+        <productpage v-if="active=='product'"></productpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="home">
         <homepage></homepage>
@@ -109,8 +109,43 @@ export default {
     //airType点击转换
     goActive(tabName){
       this.active = tabName;
-      this.currentIndex[0].isSelect = true;
-      this.currentIndex[2].isSelect = false;
+      switch(tabName){
+        case "search":
+          this.currentIndex[0].isSelect = true;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "product":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = true;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "home":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = true;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "cart":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = true;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "me":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = true;
+          break;
+      }
     },
     changeState(n){
       for(var i=0;i<this.currentIndex.length;i++){

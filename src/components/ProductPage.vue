@@ -11,12 +11,32 @@
         <div class="cartBtn">加入购物车</div>
         <div class="BuyBtn">立即购入</div>
       </div>
-      <h4 class="description">商品介绍 :
+      <h4 class="description">
+        商品介绍 :
         <p>中级氧气,无添加营养成分,加强吸入体验.是很好的廉价上瘾气体</p>
       </h4>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      gid: 0
+    };
+  },
+  beforeMount() {},
+  created() {
+    this.loadProduct();
+    console.log("product loadedZ");
+  },
+  methods: {
+    loadProduct() {
+      this.gid = this.$store.getters.getGid;
+    }
+  }
+};
+</script>
 <style scoped>
 .productWrap {
   height: 100%;
@@ -66,7 +86,7 @@
   background: linear-gradient(90deg, #2193b0, #27b0d0);
   border-radius: 0 10px 10px 0;
   box-shadow: 2px 0px 6px 1px #2193b0;
-  color:white;
+  color: white;
   font-size: 1.2rem;
   line-height: 40px;
   text-align: center;
@@ -79,24 +99,24 @@
   /* box-shadow: 1px 0px 10px 0px #2193b0; */
   animation: shadow 3s infinite;
 }
-@keyframes shadow{
-  0%{
+@keyframes shadow {
+  0% {
     box-shadow: 2px 0px 10px 0px #2193b0;
   }
-  50%{
+  50% {
     box-shadow: -15px 0px 10px 5px #c26dd2a8;
   }
-  100%{
+  100% {
     box-shadow: 2px 0px 10px 0px #2193b0;
   }
 }
-.productPrice{
+.productPrice {
   display: inline-block;
   font-size: 1.5rem;
   margin: 9px 0 0 30px;
-  color:#0085a7;
+  color: #0085a7;
 }
-.description{
+.description {
   margin-top: 30px;
 }
 </style>
