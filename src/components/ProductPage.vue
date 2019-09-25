@@ -2,18 +2,18 @@
   <div class="productWrap">
     <div class="product">
       <div class="porductImageWrap">
-        <img src="../assets/img/old.jpg" class="porductImage" />
+        <img :src="'http://127.0.0.1:8080/'+this.list[0].img_url" class="porductImage" />
       </div>
-      <h2>中级氧气</h2>
-      <h3>满足日常需求,同时加强吸入时的享受</h3>
-      <h3 class="productPrice">300 兑换量</h3>
+      <h2>{{this.list[0].title}}</h2>
+      <h3>{{this.list[0].subtitle}}</h3>
+      <h3 class="productPrice">{{this.list[0].price}} 兑换量</h3>
       <div class="btns">
         <div class="cartBtn">加入购物车</div>
         <div class="BuyBtn">立即购入</div>
       </div>
       <h4 class="description">
         商品介绍 :
-        <p>中级氧气,无添加营养成分,加强吸入体验.是很好的廉价上瘾气体</p>
+        <p>{{this.list[0].details}}</p>
       </h4>
     </div>
   </div>
@@ -22,17 +22,27 @@
 export default {
   data() {
     return {
-      gid: 0
+      gid: 0,
+      list:[]
     };
   },
   beforeMount() {},
   created() {
     this.loadProduct();
-    console.log("product loadedZ");
+    console.log("product loadedZ",this.gid);
   },
   methods: {
     loadProduct() {
       this.gid = this.$store.getters.getGid;
+      var gid = this.gid;
+      var url = "detail";
+      var obj={gid};
+      //发送请求
+      this.axios.get(url,{params:obj})
+      .then(res=>{
+        //保存返回值
+        this.list=res.data.data;
+      });
     }
   }
 };
