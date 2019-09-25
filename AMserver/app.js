@@ -98,3 +98,20 @@ server.get("/sreach_gas",(req,res)=>{
     };
   });
 });
+
+//功能:点击商品进入商品详情页
+//接收请求
+server.get("/detail",(req,res)=>{
+  //获取客户端数据
+  var gid = req.query.gid;
+  //创建sql查找对应商品
+  var sql = "SELECT gid,title,subtitle,price,img_url,details FROM am_gas WHERE gid=?";
+  pool.query(sql,[gid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code: 1, msg:"查询成功",data:result});
+    }else{
+      res.send({code: -1,msg:"内容为空"});
+    }
+  });
+})

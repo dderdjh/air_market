@@ -1,6 +1,6 @@
 <template>
   <div>
-    <porductloader :type="this.gasType" v-if="refresh" :refresh="refresh"></porductloader>
+    <porductloader :type="this.gasType" v-if="refresh" ></porductloader>
   </div>
 </template>
 <script>

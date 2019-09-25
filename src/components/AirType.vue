@@ -18,7 +18,8 @@
 export default {
   data() {
     return {
-      gasType: 0
+      gasType: 0,
+      tabName:"search"
     };
   },
   methods: {
@@ -29,7 +30,7 @@ export default {
       //修改为对应气体种类
       this.$store.commit("setType", 1);
       //点击跳转
-      this.bus.$emit("goActive");
+      this.bus.$emit("goActive",this.tabName);
     },
     typeSearchOld() {
       // this.gasType = 2;
@@ -37,21 +38,21 @@ export default {
       // this.bus.$emit("goActive")
 
       this.$store.commit("setType", 2);
-      this.bus.$emit("goActive");
+      this.bus.$emit("goActive",this.tabName);
     },
     typeSearchOther() {
       this.$store.commit("setType", 3);
 
       // this.gasType = 3;
       // this.bus.$emit("typeSearch",this.gasType);
-      this.bus.$emit("goActive");
+      this.bus.$emit("goActive",this.tabName);
     },
     typeSearchMystery() {
       this.$store.commit("setType", 4);
       // console.log(this.$store.state.type+'search')
       // this.gasType = 4;
       // this.bus.$emit("typeSearch",this.gasType);
-      this.bus.$emit("goActive");
+      this.bus.$emit("goActive",this.tabName);
     }
   }
 };

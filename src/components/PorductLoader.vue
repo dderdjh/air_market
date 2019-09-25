@@ -6,7 +6,7 @@
       infinite-scroll-distance="10"
       class="infin-list"
     >
-      <div class="goods" v-for="(item,index) of list" :key="index">
+      <div class="goods" v-for="(item,index) of list" :key="index" @click="toDetail">
         <!-- 商品图片 -->
         <img class="goods-img" :src="'http://127.0.0.1:8080/'+item.img_url" />
         <!-- 商品名称 -->
@@ -28,18 +28,15 @@ export default {
       pno: 0,
       gasType: 0,
       typeC: 0,
+      tabName: "product"
     };
   },
-  props: ["type",'refresh'],
+  props: ["type"],
   created() {
     console.log("showed");
     // console.log('get from index this.refresh'+this.refresh)
     // this.typeC = this.$store.getters.getType || 0
     this.loadMore();
-  },
-  updated() {
-    // console.log(this.typeC, "update");
-    // this.gasType[0] = this.type;
   },
   methods: {
     loadMore() {
@@ -50,20 +47,20 @@ export default {
       // 1.创建一个url地址
       if (this.gasType == 0) {
         var url = "gas";
+        //1.1.将当前页码加一
         this.pno++;
         var obj = {
           pno: this.pno
         };
       } else {
         var url = "sreach_gas";
+        //1.1.将当前页码加一
         this.pno++;
         var obj = {
           pno: this.pno,
           gasType: this.gasType
         };
       }
-      //1.1.将当前页码加一
-
       // 2.发送afax请求获取第一页数据
       this.axios.get(url, { params: obj }).then(res => {
         // 3.将数据保存在data中
@@ -77,6 +74,10 @@ export default {
         }
       });
     },
+    toDetail(){
+      console.log(12);
+      this.bus.$emit("goActive",this.tabName);
+    }
   }, //methods end
   watch: {
   } //watch end

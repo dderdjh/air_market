@@ -107,8 +107,8 @@ export default {
   },
   methods: {
     //airType点击转换
-    goActive(){
-      this.active = "search";
+    goActive(tabName){
+      this.active = tabName;
       this.currentIndex[0].isSelect = true;
       this.currentIndex[2].isSelect = false;
     },
