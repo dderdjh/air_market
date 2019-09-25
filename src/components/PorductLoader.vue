@@ -33,7 +33,7 @@ export default {
   },
   props: ["type"],
   created() {
-    console.log("showed");
+    console.log("porderLoader");
     // console.log('get from index this.refresh'+this.refresh)
     // this.typeC = this.$store.getters.getType || 0
     this.loadMore();

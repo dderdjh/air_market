@@ -23,39 +23,35 @@ export default {
   data() {
     return {
       gid: 0,
-      imgUrl:"",
-      title:"",
-      subtitle:"",
-      price:"",
-      details:"",
-      soldCount:""
+      imgUrl: "",
+      title: "",
+      subtitle: "",
+      price: "",
+      details: "",
+      soldCount: ""
     };
-  },
-  updated() {
-    console.log(2132132)
   },
   created() {
     this.loadProduct();
-    console.log("product loaded",this.gid);
+    console.log("product loaded", this.gid);
   },
   methods: {
     loadProduct() {
       this.gid = this.$store.getters.getGid;
       var gid = this.gid;
       var url = "detail";
-      var obj={gid};
+      var obj = { gid };
       //发送请求
-      this.axios.get(url,{params:obj})
-      .then(res=>{
-        if(res.data.code==1){
+      this.axios.get(url, { params: obj }).then(res => {
+        if (res.data.code == 1) {
           //保存返回值
-          this.imgUrl = "http://127.0.0.1:8080/"+res.data.data[0].img_url;
+          this.imgUrl = "http://127.0.0.1:8080/" + res.data.data[0].img_url;
           this.title = res.data.data[0].title;
           this.subtitle = res.data.data[0].subtitle;
           this.price = res.data.data[0].price;
           this.details = res.data.data[0].details;
           this.soldCount = res.data.data[0].soldCount;
-        }else if(res.data.code==-1){
+        } else if (res.data.code == -1) {
           return;
         }
       });

@@ -14,7 +14,11 @@ export default {
       
     }
   },
-  created(){},
+  created(){
+    //初始化气体类型为0
+    this.$store.commit("setType",0);
+    // console.log(this.$store.getters.getType,"home type");
+  },
   components: {
     airtype: AirType,
     porductloader: PorductLoader

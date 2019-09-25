@@ -13,7 +13,7 @@
         <productpage v-if="active=='product'"></productpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="home">
-        <homepage></homepage>
+        <homepage v-if="active=='home'"></homepage>
       </mt-tab-container-item>
       <mt-tab-container-item id="cart">
         <cartpage></cartpage>
