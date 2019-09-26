@@ -45,7 +45,7 @@ export default {
           name: "销量",
           type: "bar",
           data: [5, 10, 36, 10],
-          color: "#00aaef"
+          color: "#c26dd2a8"
         }
       ]
     });
