@@ -1,6 +1,16 @@
 <template>
   <div class="productWrap">
     <div class="product">
+      <!-- mask layer -->
+      <div class="porductMask" v-if="gid==0?true:false">
+        <img class="maskImg" src="../assets/cloud.png" >
+        <div class="maskInfo">
+          <p>请 至 少 选 择</p>
+          <p>一 样</p>
+          <p>商</p>
+          <p>品</p>
+        </div>
+      </div>
       <div class="porductImageWrap">
         <img :src="this.imgUrl" class="porductImage" />
       </div>
@@ -60,6 +70,32 @@ export default {
 };
 </script>
 <style scoped>
+.porductMask{
+  width: 100%;
+  height:100%;
+  background:   #cbecfb;
+  position: fixed;
+  margin:-10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+}
+.maskImg{
+  width: 128px;
+}
+.maskInfo{
+  width: 107px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-weight:normal;
+  font-size: 20px;
+}
+.maskInfo p{
+  margin-top: 23px;
+  margin-bottom: 15px;
+}
 .productWrap {
   height: 100%;
   display: flex;

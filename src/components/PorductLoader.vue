@@ -3,7 +3,7 @@
     <ul
       v-infinite-scroll="loadMore"
       infinite-scroll-disabled="loading"
-      infinite-scroll-distance="10"
+      infinite-scroll-distance="6"
       class="infin-list"
     >
       <div class="goods" v-for="(item,index) of list" :key="index" @click="toDetail" :data-gid="item.gid">
@@ -70,7 +70,8 @@ export default {
           var rows = this.list.concat(res.data.data); //页的拼接
           this.list = rows;
         }else if(res.data.code==-1){
-          return;
+          // return;
+          console.log("load end")
         }
       });
     },
