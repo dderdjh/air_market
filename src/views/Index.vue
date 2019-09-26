@@ -154,7 +154,7 @@ export default {
         }else{
           this.currentIndex[i].isSelect=false;
         }
-        if(this.currentIndex[4].isSelect){
+        if(this.currentIndex[4].isSelect || this.currentIndex[3].isSelect){
           this.isMe = false;
         }else{
           this.isMe = true;

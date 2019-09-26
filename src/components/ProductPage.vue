@@ -8,7 +8,7 @@
           <p>请 至 少 选 择</p>
           <p>一 样</p>
           <p>商</p>
-          <p>品</p>
+          <p>品</p> 
         </div>
       </div>
       <div class="porductImageWrap">

@@ -8,7 +8,7 @@ import Reg from "./views/Reg.vue"
 import Index from "./views/Index.vue"
 
 ///==========组件测试
-import ProductPage from "./components/ProductPage.vue"
+import CartPage from "./components/CartPage.vue"
 
 
 Vue.use(Router)
@@ -31,9 +31,9 @@ export default new Router({
       component: Index
     },
     {
-      path: "/ProductPage",
-      name: "aseachpage",
-      component: ProductPage,
+      path: "/CartPage",
+      name: "CartPage",
+      component: CartPage,
       
     }
   ],
