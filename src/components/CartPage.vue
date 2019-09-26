@@ -3,80 +3,145 @@
     <div class="cartHeader">
       <div>编辑商品</div>
     </div>
+    <div style="margin-bottom:60px;"></div>
     <div class="cartItem">
-      <img class="cartItemImg" src="../assets/img/air.jpg" >
+      <img class="cartItemImg" src="../assets/img/air.jpg" />
       <p class="cartTitle">高级空气的频繁</p>
       <p class="cartPrice">300019 兑换量</p>
       <div class="cartCounter">
         <div class="counterBtn">
-          <img src="../assets/jia.png" >
+          <img src="../assets/jia.png" />
         </div>
         <span class="counterNum">46</span>
         <div class="counterBtn">
-          <img src="../assets/jian.png" >
+          <img src="../assets/jian.png" />
         </div>
       </div>
+    </div>
+    <div class="cartFooter">
+      <div class="leftH"></div>
+      <div class="rightH"></div>
+      <span class="chooseAllTxt">全选</span>
+      <div class="buyBtn">立 即 兑 换</div>
     </div>
   </div>
 </template>
 <style scoped>
-  .cartHeader{
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid #d0d0d0;
-    display: flex;
-    justify-content:flex-end;
-  }
-  .cartHeader div{
-    width:100px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 19px;
-  }
-  .cartItem{
-    height: 100px;
-    /* border: 1px solid blue; */
-    box-shadow: 0px 0px 5px 0px #c26dd2a8;
-    border-radius: 10px;
-    margin:10px;
-    position: relative;
-  }
-  .cartItemImg{
-    width: 90px;
-    height: 70px;
-    border-radius: 10px;
-    position: absolute;
-    top: 15px;
-    left: 10px;
-  }
-  .cartTitle{
-    position: absolute;
-    left: 30%;
-    top: 5%;
-    font-size: 18px;
-  }
-  .cartCounter{
-    width:32px;
-    height: 88px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 10%;
-    left:84%;
-  }
-  .counterBtn img{
-    width:16px;
-  }
-  .cartPrice{
-    width:120px;
-    font-weight: bold;
-    color: #00aaef;
-    font-size: 18px;
-    position: absolute;
-    left: 49%;
-    top: 38%;
-  }
+/* header */
+.cartHeader {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  background: linear-gradient(90deg, #e1f5fb, #ebf8ff);
+  z-index: 1;
+  margin-bottom: 50px;
+}
+.cartHeader div {
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 19px;
+}
+/* cart item */
+.cartItem {
+  height: 100px;
+  box-shadow: 0px 0px 5px 0px #c26dd2a8;
+  border-radius: 10px;
+  margin: 10px;
+  position: relative;
+}
+.cartItemImg {
+  width: 90px;
+  height: 70px;
+  border-radius: 10px;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+.cartTitle {
+  position: absolute;
+  left: 30%;
+  top: 5%;
+  font-size: 18px;
+}
+.cartCounter {
+  width: 32px;
+  height: 88px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  left: 84%;
+}
+.counterBtn img {
+  width: 16px;
+}
+.cartPrice {
+  width: 120px;
+  font-weight: bold;
+  color: #00aaef;
+  font-size: 18px;
+  position: absolute;
+  left: 49%;
+  top: 38%;
+}
+/* footer */
+.cartFooter {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(-90deg, #e1f5fb, #ebf8ff);
+  line-height: 50px;
+  position: fixed;
+  bottom: 58px;
+}
+.buyBtn {
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  background: linear-gradient(-90deg, #2193b0, #c26dd2a8);
+  box-shadow: 0px 0px 10px 0px #c26dd2a8;
+  font-weight: bold;
+  line-height: 30px;
+  border-radius: 30px;
+  padding: 6px;
+  position: absolute;
+  top:4px;
+  right:20px;
+}
+.leftH,.rightH{
+  width:13px;
+  height: 26px;
+  border: 1px solid gray;
+  border-radius: 26px 0 0 26px;
+  border-right:0;
+  position: absolute;
+}
+.leftH{
+  background-color:hotpink;
+  transform: rotate(300deg);
+  top:14px;
+  left: 27px;
+}
+.rightH{
+  border-radius: 0 26px 26px 0;
+  border-right: 1px solid gray;
+  border-left: 0;
+  top:2px;
+  left: 34px;
+  background-color:brown;
+  transform: rotate(300deg);
+}
+.chooseAllTxt{
+  position: absolute;
+  top:0;
+  left: 65px;
+  font-weight: bold;
+  font-size: 18px;
+}
 </style>
