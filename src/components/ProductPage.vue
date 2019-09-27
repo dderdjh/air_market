@@ -18,7 +18,7 @@
       <h3>{{this.subtitle}}</h3>
       <h3 class="productPrice">{{this.price}} 兑换量</h3>
       <div class="btns">
-        <div class="cartBtn">加入购物车</div>
+        <div class="cartBtn" @click="addToCart">加入购物车</div>
         <div class="BuyBtn">立即购入</div>
       </div>
       <h4 class="description">
@@ -65,8 +65,11 @@ export default {
           return;
         }
       });
+    },
+    addToCart(){
+      
     }
-  }
+  }//methods end
 };
 </script>
 <style scoped>

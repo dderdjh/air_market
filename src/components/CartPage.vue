@@ -17,6 +17,7 @@
           <img src="../assets/jian.png" />
         </div>
       </div>
+      <img class="delBtn" src="../assets/del.png" >
     </div>
     <div class="cartFooter">
       <div class="leftH"></div>
@@ -26,6 +27,13 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  created(){
+    console.log("cart load");
+  }
+}
+</script>
 <style scoped>
 /* header */
 .cartHeader {
@@ -77,7 +85,7 @@
   align-items: center;
   position: absolute;
   top: 10%;
-  left: 84%;
+  left: 80%;
 }
 .counterBtn img {
   width: 16px;
@@ -90,6 +98,14 @@
   position: absolute;
   left: 49%;
   top: 38%;
+}
+.delBtn{
+  width: 22px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -11px;
+  
 }
 /* footer */
 .cartFooter {
@@ -117,25 +133,28 @@
 .leftH,.rightH{
   width:13px;
   height: 26px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   border-radius: 26px 0 0 26px;
   border-right:0;
   position: absolute;
+  
 }
 .leftH{
-  background-color:hotpink;
+  background-color:#2193b0;
   transform: rotate(300deg);
   top:14px;
   left: 27px;
+  box-shadow: -3px 0px 16px 0px #b3b3b3;
 }
 .rightH{
   border-radius: 0 26px 26px 0;
-  border-right: 1px solid gray;
-  border-left: 0;
+  /* border-right: 1px solid gray; */
+  /* border-left: 0; */
   top:2px;
   left: 34px;
-  background-color:brown;
+  background-color:#2193b0;
   transform: rotate(300deg);
+  box-shadow: 3px 0px 16px 0px #b3b3b3;
 }
 .chooseAllTxt{
   position: absolute;

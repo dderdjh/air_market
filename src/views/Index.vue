@@ -16,7 +16,7 @@
         <homepage v-if="active=='home'"></homepage>
       </mt-tab-container-item>
       <mt-tab-container-item id="cart">
-        <cartpage></cartpage>
+        <cartpage v-if="active=='cart'"></cartpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="me">
         <mepage></mepage>
@@ -175,8 +175,6 @@ export default {
     "homepage":HomePage,
     "cartpage":CartPage,
     "mepage":MePage
-
-
   }
 }
 </script>

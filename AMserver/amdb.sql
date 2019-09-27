@@ -33,6 +33,16 @@ CREATE TABLE am_gas(
   img_url VARCHAR(128)                   #图片路径 
 );
 
+#建立购物车列表
+CREATE TABLE am_cart(
+  cid INT PRIMARY KEY AUTO_INCREMENT, 
+  gid INT,                               #商品编号
+  title VARCHAR(128),                    #商品标题
+  price DECIMAL(10,2),                   #商品价格
+  amount INT,                            #购买数量
+  img_url VARCHAR(128)                   #商品图片
+);
+
 /*********导入数据**********************************************************/
 
 /**气体家族**/

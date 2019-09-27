@@ -114,4 +114,34 @@ server.get("/detail",(req,res)=>{
       res.send({code: -1,msg:"内容为空"});
     }
   });
-})
+});
+
+//功能:将指定商品加入购物车
+server.get("/addToCart",(req,res)=>{
+  var gid = req.query.gid;
+  var title = req.query.title;
+  var price  = req.query.price;
+  var amont = req.query.amont;
+  var img_url = req.query.img_url;
+
+  var sql = "SELECT gid FROM am_cart WHERE gid = ?"; //验证购物车里有没有相同的商品
+  pool.query(sql,[gid],(err,result)=>{
+    if(err) throw err;
+    if(result.length == 0){
+      //如果没有就加入
+      var sql = `INSET INTO am_cart (cid,gid,title,price,amont,img_url) VALUES (NULL,${gid},${title},${price},${amont},${img_url})`;
+    }else{
+      //如果有就加一
+      var sql = `UPDATE am_cart SET amont=amont+1 WHERE gid=${gid}`;
+    }
+    //执行对应的SQL返回结果
+    pool.query(sql,(err,result)=>{
+      if(err) throw err;
+      if(result.affectedRow>0){
+        res.send({code:1,msg:"商品添加成功"});
+      }else{
+        res.send({code:1,msg:"添加失败"});
+      }
+    });
+  });
+});
