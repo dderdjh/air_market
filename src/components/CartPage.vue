@@ -5,20 +5,21 @@
     </div>
     <div style="margin-bottom:60px;"></div>
     <div class="cartItem" v-for="(item,index) of list" :key="index">
-      <img class="cartItemImg" src="../assets/img/air.jpg" />
-      <p class="cartTitle">高级空气的频繁</p>
-      <p class="cartPrice">300019 兑换量</p>
+      <img class="cartItemImg" :src="item.img_url" />
+      <p class="cartTitle">{{item.title}}</p>
+      <p class="cartPrice">{{item.price}} 兑换量</p>
       <div class="cartCounter">
         <div class="counterBtn">
           <img src="../assets/jia.png" />
         </div>
-        <span class="counterNum">46</span>
+        <span class="counterNum">{{item.amount}}</span>
         <div class="counterBtn">
           <img src="../assets/jian.png" />
         </div>
       </div>
       <img class="delBtn" src="../assets/del.png" >
     </div>
+    <div style="margin-top:55px;"></div>
     <div class="cartFooter">
       <div class="leftH"></div>
       <div class="rightH"></div>
@@ -36,11 +37,19 @@ export default {
   },
   created(){
     console.log("cart load");
-    loadCart();
+    this.loadCart();
   },
   methods: {
+    //显示购物车商品
     loadCart(){
       var url = "loadCart";
+      this.axios.get(url)
+      .then(res=>{
+        if(res.data.code == 1){
+          var rows = res.data.data;
+          this.list = rows;
+        }
+      });
     }
   },
 }
