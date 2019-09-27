@@ -1,6 +1,7 @@
 <template>
   <div class="pageWrap" id="pageWrap">
     <div class="meWrap">
+
       <div class="bakcGround">
         <img src="../assets/level1.png" class="level" />
         <img src="../assets/config.png" class="config" />
@@ -44,7 +45,7 @@ export default {
           name: "销量",
           type: "bar",
           data: [5, 10, 36, 10],
-          color: "#00aaef"
+          color: "#b992e0"
         }
       ]
     });
@@ -140,7 +141,7 @@ export default {
   width: 96%;
   height: auto;
   border-radius: 10px;
-  background: #39a8c317;
+  background: #4cb4ce30;
 }
 .info span {
   width: 92%;

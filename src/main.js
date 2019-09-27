@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import bus from './bus'
+
+Vue.prototype.bus = bus;
 
 //================================= 第三方库 =================================================
 //Mint UI 

@@ -8,7 +8,11 @@ import Reg from "./views/Reg.vue"
 import Index from "./views/Index.vue"
 
 ///==========组件测试
+<<<<<<< HEAD
 // import AirType from "./components/AirType.vue"
+=======
+import CartPage from "./components/CartPage.vue"
+>>>>>>> 72c79343eeb66f1b6bfb7bc0ab3210a5f95ee05d
 
 
 Vue.use(Router)
@@ -30,7 +34,16 @@ export default new Router({
       name: "index",
       component: Index
     },
+<<<<<<< HEAD
     
+=======
+    {
+      path: "/CartPage",
+      name: "CartPage",
+      component: CartPage,
+      
+    }
+>>>>>>> 72c79343eeb66f1b6bfb7bc0ab3210a5f95ee05d
   ],
   
 

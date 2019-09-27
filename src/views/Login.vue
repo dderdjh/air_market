@@ -35,11 +35,12 @@ export default {
       errorN: 0,
       errorP: 0,
       uname: "",
-      upwd: ""
+      upwd: "",
+      canClick: true
     };
   },
   methods: {
-    reg(){
+    reg() {
       //点击注册按钮跳转到注册页
       this.$router.push("/Reg");
     },
@@ -69,14 +70,18 @@ export default {
         uname,
         upwd
       };
-      this.axios(url,{params:obj}).then(res=>{
-        var code = res.data.code;
-        if(code==-1){
-          this.$toast("用户名或密码错误");
-        }else{
-          this.$router.push("/Index");
-        }
-      })
+      if (this.canClick) {//节流
+        this.canClick = false;
+        this.axios(url, { params: obj }).then(res => {
+          this.canClick = true;
+          var code = res.data.code;
+          if (code == -1) {
+            this.$toast("用户名或密码错误");
+          } else {
+            this.$router.push("/Index");
+          }
+        });
+      }
     },
     showinfo(n) {
       let regName = /^^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/i;
@@ -93,7 +98,10 @@ export default {
       if (n == 0) {
         switch (this.actived) {
           case 1:
-            if (this.uname !== "" && !(regName.test(this.uname)||regName2.test(this.uname))) {
+            if (
+              this.uname !== "" &&
+              !(regName.test(this.uname) || regName2.test(this.uname))
+            ) {
               this.$toast({
                 message: "用户名格式不正确",
                 position: "bottom"

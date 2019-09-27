@@ -1,32 +1,29 @@
 <template>
-  <div>
+  <div class="homeWrap">
     <airtype></airtype>
-    <div class="goods" v-for="(item,index) of list" :key="index">
-      <!-- 商品图片 -->
-      <img :src="'http://127.0.0.1:8080/'+item.img_url" >
-      <!-- 商品名称 -->
-      <h5>{{item.title}}</h5>
-      <h6>{{item.subtitle}}</h6>
-      <div>{{item.price}}</div>
-    </div>
+    <porductloader></porductloader>
   </div>
 </template>
 <script>
 // 引入组件
 import AirType from "./AirType.vue";
+import PorductLoader from "./PorductLoader.vue";
 export default {
   data(){
     return{
-      list:[],
-      pno:0
+      
     }
   },
   created(){
-    this.loadMore();
+    //初始化气体类型为0
+    this.$store.commit("setType",0);
+    // console.log(this.$store.getters.getType,"home type");
   },
   components: {
-    airtype: AirType
+    airtype: AirType,
+    porductloader: PorductLoader
   },
+<<<<<<< HEAD
   methods: {
     loadMore(){
       //功能:当组件创建成功后获取第一页数据
@@ -46,5 +43,7 @@ export default {
     }
   },
  
+=======
+>>>>>>> 72c79343eeb66f1b6bfb7bc0ab3210a5f95ee05d
 };
 </script>

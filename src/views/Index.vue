@@ -7,21 +7,22 @@
     <div style="margin-top:52px;" v-show="isMe"></div>
     <mt-tab-container class="page-tabbar-container" v-model="active" >
       <mt-tab-container-item id="search">
-        <searchpage></searchpage>
+        <searchpage :refresh="refresh"></searchpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="product">
-        <productpage></productpage>
+        <productpage v-if="active=='product'"></productpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="home">
-        <homepage></homepage>
+        <homepage v-if="active=='home'"></homepage>
       </mt-tab-container-item>
       <mt-tab-container-item id="cart">
-        <cartpage></cartpage>
+        <cartpage v-if="active=='cart'"></cartpage>
       </mt-tab-container-item>
       <mt-tab-container-item id="me">
         <mepage></mepage>
       </mt-tab-container-item>
     </mt-tab-container>
+    <!-- 底部导航 -->
     <mt-tabbar v-model="active" fixed>
       <mt-tab-item id="search" @click.native="changeState(0)">
         <tabbaricon
@@ -87,9 +88,65 @@ export default {
         {isSelect:false},
       ],
       isMe:true,
+      refresh:false
+    }
+  },
+  created(){
+    this.bus.$on("goActive",this.goActive.bind(this));
+  },
+  watch:{
+    active() {
+      if(this.active!='search'){
+        this.refresh = false;
+      }
+      else {
+        this.refresh = true;
+      }
+      console.log('index change refresh reference'+this.refresh)
     }
   },
   methods: {
+    //airType点击转换
+    goActive(tabName){
+      this.active = tabName;
+      switch(tabName){
+        case "search":
+          this.currentIndex[0].isSelect = true;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "product":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = true;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "home":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = true;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "cart":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = true;
+          this.currentIndex[4].isSelect = false;
+          break;
+        case "me":
+          this.currentIndex[0].isSelect = false;
+          this.currentIndex[1].isSelect = false;
+          this.currentIndex[2].isSelect = false;
+          this.currentIndex[3].isSelect = false;
+          this.currentIndex[4].isSelect = true;
+          break;
+      }
+    },
     changeState(n){
       for(var i=0;i<this.currentIndex.length;i++){
         if(n==i){
@@ -97,12 +154,17 @@ export default {
         }else{
           this.currentIndex[i].isSelect=false;
         }
-        if(this.currentIndex[4].isSelect){
+        if(this.currentIndex[4].isSelect || this.currentIndex[3].isSelect){
           this.isMe = false;
         }else{
           this.isMe = true;
         }
       }
+    },
+    changeRefresh() {
+      console.log('come back from search and before this.refresh='+this.refresh)
+      this.refresh = false;
+      console.log('come back from search and after this.refresh='+this.refresh)
     }
   },
   components:{
@@ -113,8 +175,6 @@ export default {
     "homepage":HomePage,
     "cartpage":CartPage,
     "mepage":MePage
-
-
   }
 }
 </script>
@@ -127,5 +187,6 @@ export default {
     height:100vh;
     overflow:auto;
     padding-bottom: 60px;
+    background: #39a8c317;
   }
 </style>
