@@ -38,7 +38,8 @@ export default {
       subtitle: "",
       price: "",
       details: "",
-      soldCount: ""
+      soldCount: "",
+      amount:1
     };
   },
   created() {
@@ -67,7 +68,31 @@ export default {
       });
     },
     addToCart(){
-      
+      console.log("added");
+      var gid = this.gid;
+      var title = this.title;
+      var price = this.price;
+      var amount = this.amount;
+      var img_url = this.imgUrl;
+      //发送请求
+      var url = "addToCart";
+      var obj = {
+        gid,
+        title,
+        price,
+        amount,
+        img_url
+      }
+      this.axios.get(url,{params:obj})
+      .then(res=>{
+        if (res.data.code == 1){
+          this.$toast({
+            message: "添 加 成 功"
+          });
+        }else{
+          console.log(res,'add nonononok');
+        }
+      });
     }
   }//methods end
 };

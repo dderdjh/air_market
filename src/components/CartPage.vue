@@ -29,9 +29,20 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      
+    }
+  },
   created(){
     console.log("cart load");
-  }
+    loadCart();
+  },
+  methods: {
+    loadCart(){
+
+    }
+  },
 }
 </script>
 <style scoped>
