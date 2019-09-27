@@ -66,6 +66,7 @@ export default {
   background: linear-gradient(90deg, #e1f5fb, #ebf8ff);
   z-index: 1;
   margin-bottom: 50px;
+  border:0px;
 }
 .cartHeader div {
   width: 100px;
