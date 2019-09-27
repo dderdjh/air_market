@@ -4,7 +4,7 @@
       <div>编辑商品</div>
     </div>
     <div style="margin-bottom:60px;"></div>
-    <div class="cartItem">
+    <div class="cartItem" v-for="(item,index) of list" :key="index">
       <img class="cartItemImg" src="../assets/img/air.jpg" />
       <p class="cartTitle">高级空气的频繁</p>
       <p class="cartPrice">300019 兑换量</p>
@@ -31,7 +31,7 @@
 export default {
   data(){
     return{
-      
+      list:[]
     }
   },
   created(){
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     loadCart(){
-
+      var url = "loadCart";
     }
   },
 }
