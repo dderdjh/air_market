@@ -53,7 +53,9 @@ export default {
     delCart(event) {
       //询问是否删除
       var cid = event.currentTarget.dataset.cid;
-      this.$messagebox.confirm("确定删除么?").then(res => {
+      this.$messagebox
+      .confirm("确定删除么?")
+      .then(res => {
         var url = "delCart";
         var obj = { cid };
         this.axios.get(url, { params: obj }).then(res => {
@@ -69,8 +71,9 @@ export default {
               duration: 1000
             });
           }
-        });//删除end
-      }); //询问end
+        }); //删除end
+      })
+      .catch(res => {}); //询问end
     },
     //显示购物车商品
     loadCart() {
