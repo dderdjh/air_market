@@ -51,23 +51,26 @@ export default {
   methods: {
     //删除指定商品
     delCart(event) {
+      //询问是否删除
       var cid = event.currentTarget.dataset.cid;
-      var url = "delCart";
-      var obj = { cid };
-      this.axios.get(url, { params: obj }).then(res => {
-        if (res.data.code == 1) {
-          this.$toast({
-            message: "删 除 成 功",
-            duration: 1000
-          });
-          this.loadCart();
-        } else if (res.data.code == -1) {
-          this.$toast({
-            message: "删 除 失 败",
-            duration: 1000
-          });
-        }
-      });
+      this.$messagebox.confirm("确定删除么?").then(res => {
+        var url = "delCart";
+        var obj = { cid };
+        this.axios.get(url, { params: obj }).then(res => {
+          if (res.data.code == 1) {
+            this.$toast({
+              message: "删 除 成 功",
+              duration: 1000
+            });
+            this.loadCart();
+          } else if (res.data.code == -1) {
+            this.$toast({
+              message: "删 除 失 败",
+              duration: 1000
+            });
+          }
+        });//删除end
+      }); //询问end
     },
     //显示购物车商品
     loadCart() {
@@ -96,20 +99,20 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
 }
-.cmaskImg{
+.cmaskImg {
   width: 128px;
 }
-.cmaskInfo{
+.cmaskInfo {
   width: 130px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-weight:normal;
+  font-weight: normal;
   font-size: 20px;
 }
-.cmaskInfo p{
+.cmaskInfo p {
   margin-top: 23px;
   margin-bottom: 15px;
 }
