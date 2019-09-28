@@ -101,7 +101,7 @@ export default {
 .porductMask{
   width: 100%;
   height:100%;
-  background:   #cbecfb;
+  background:#cbecfb;
   position: fixed;
   margin:-10px;
   display:flex;

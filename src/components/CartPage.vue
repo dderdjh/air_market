@@ -3,8 +3,16 @@
     <div class="cartHeader">
       <div>编辑商品</div>
     </div>
+    <div class="cartMask" v-if="mask">
+      <img src="../assets/cartmarsk.png" class="cmaskImg" />
+      <div class="cmaskInfo">
+        <p>快 向 购 物 车 里</p>
+        <p>加 入 商 品</p>
+        <p>吧</p>
+      </div>
+    </div>
     <div style="margin-bottom:60px;"></div>
-    <div class="cartItem" v-for="(item,index) of list" :key="index" >
+    <div class="cartItem" v-for="(item,index) of list" :key="index">
       <img class="cartItemImg" :src="item.img_url" />
       <p class="cartTitle">{{item.title}}</p>
       <p class="cartPrice">{{item.price}} 兑换量</p>
@@ -17,7 +25,7 @@
           <img src="../assets/jian.png" />
         </div>
       </div>
-      <img class="delBtn" src="../assets/del.png" @click="delCart" :data-cid="item.cid">
+      <img class="delBtn" src="../assets/del.png" @click="delCart" :data-cid="item.cid" />
     </div>
     <div style="margin-top:55px;"></div>
     <div class="cartFooter">
@@ -30,50 +38,81 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      list:[]
-    }
+  data() {
+    return {
+      list: [],
+      mask: false
+    };
   },
-  created(){
+  created() {
     console.log("cart load");
     this.loadCart();
   },
   methods: {
     //删除指定商品
-    delCart(event){
+    delCart(event) {
       var cid = event.currentTarget.dataset.cid;
-      console.log(cid);
       var url = "delCart";
-      var obj = {cid};
-      this.axios.get(url,{params:obj})
-      .then(res=>{
-        if(res.data.code == 1){
+      var obj = { cid };
+      this.axios.get(url, { params: obj }).then(res => {
+        if (res.data.code == 1) {
           this.$toast({
-            message:"删 除 成 功"
+            message: "删 除 成 功",
+            duration: 1000
           });
-        }else if(res.data.code == -1){
+          this.loadCart();
+        } else if (res.data.code == -1) {
           this.$toast({
-            message:"删 除 失 败"
+            message: "删 除 失 败",
+            duration: 1000
           });
         }
       });
     },
     //显示购物车商品
-    loadCart(){
+    loadCart() {
       var url = "loadCart";
-      this.axios.get(url)
-      .then(res=>{
-        if(res.data.code == 1){
+      this.axios.get(url).then(res => {
+        if (res.data.code == 1) {
           var rows = res.data.data;
           this.list = rows;
+        } else if (res.data.code == -1) {
+          this.mask = true;
         }
       });
     }
-  },
-}
+  }
+};
 </script>
 <style scoped>
+/* mask */
+.cartMask {
+  background: #cbecfb;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  margin-top: -10px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content:center;
+}
+.cmaskImg{
+  width: 128px;
+}
+.cmaskInfo{
+  width: 130px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-weight:normal;
+  font-size: 20px;
+}
+.cmaskInfo p{
+  margin-top: 23px;
+  margin-bottom: 15px;
+}
 /* header */
 .cartHeader {
   width: 100%;
@@ -85,7 +124,7 @@ export default {
   background: linear-gradient(90deg, #e1f5fb, #ebf8ff);
   z-index: 1;
   margin-bottom: 50px;
-  border:0px;
+  border: 0px;
 }
 .cartHeader div {
   width: 100px;
@@ -139,13 +178,12 @@ export default {
   left: 49%;
   top: 38%;
 }
-.delBtn{
+.delBtn {
   width: 22px;
   position: absolute;
   top: 50%;
   right: 10px;
   margin-top: -11px;
-  
 }
 /* footer */
 .cartFooter {
@@ -155,6 +193,7 @@ export default {
   line-height: 50px;
   position: fixed;
   bottom: 58px;
+  z-index: 2;
 }
 .buyBtn {
   width: 120px;
@@ -167,38 +206,38 @@ export default {
   border-radius: 30px;
   padding: 6px;
   position: absolute;
-  top:4px;
-  right:20px;
+  top: 4px;
+  right: 20px;
 }
-.leftH,.rightH{
-  width:13px;
+.leftH,
+.rightH {
+  width: 13px;
   height: 26px;
   /* border: 1px solid gray; */
   border-radius: 26px 0 0 26px;
-  border-right:0;
+  border-right: 0;
   position: absolute;
-  
 }
-.leftH{
-  background-color:#2193b0;
+.leftH {
+  background-color: #2193b0;
   transform: rotate(300deg);
-  top:14px;
+  top: 14px;
   left: 27px;
   box-shadow: -3px 0px 16px 0px #b3b3b3;
 }
-.rightH{
+.rightH {
   border-radius: 0 26px 26px 0;
   /* border-right: 1px solid gray; */
   /* border-left: 0; */
-  top:2px;
+  top: 2px;
   left: 34px;
-  background-color:#2193b0;
+  background-color: #2193b0;
   transform: rotate(300deg);
   box-shadow: 3px 0px 16px 0px #b3b3b3;
 }
-.chooseAllTxt{
+.chooseAllTxt {
   position: absolute;
-  top:0;
+  top: 0;
   left: 65px;
   font-weight: bold;
   font-size: 18px;
