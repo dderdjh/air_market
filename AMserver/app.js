@@ -158,3 +158,17 @@ server.get("/loadCart", (req, res) => {
     }
   });
 });
+
+//功能:删除购物车内商品
+server.get("/delCart", (req, res) => {
+  var cid = req.query.cid;
+  var sql = "DELETE FROM am_cart WHERE cid=?";
+  pool.query(sql, [cid], (err, result) => {
+    if (err) throw err;
+    if (result.affectedRows > 0) {
+      res.send({ code: 1, msg: "删除成功" });
+    } else {
+      res.send({ code: -1, msg: "删除失败" });
+    }
+  });
+});

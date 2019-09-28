@@ -4,7 +4,7 @@
       <div>编辑商品</div>
     </div>
     <div style="margin-bottom:60px;"></div>
-    <div class="cartItem" v-for="(item,index) of list" :key="index">
+    <div class="cartItem" v-for="(item,index) of list" :key="index" >
       <img class="cartItemImg" :src="item.img_url" />
       <p class="cartTitle">{{item.title}}</p>
       <p class="cartPrice">{{item.price}} 兑换量</p>
@@ -17,7 +17,7 @@
           <img src="../assets/jian.png" />
         </div>
       </div>
-      <img class="delBtn" src="../assets/del.png" >
+      <img class="delBtn" src="../assets/del.png" @click="delCart" :data-cid="item.cid">
     </div>
     <div style="margin-top:55px;"></div>
     <div class="cartFooter">
@@ -40,6 +40,25 @@ export default {
     this.loadCart();
   },
   methods: {
+    //删除指定商品
+    delCart(event){
+      var cid = event.currentTarget.dataset.cid;
+      console.log(cid);
+      var url = "delCart";
+      var obj = {cid};
+      this.axios.get(url,{params:obj})
+      .then(res=>{
+        if(res.data.code == 1){
+          this.$toast({
+            message:"删 除 成 功"
+          });
+        }else if(res.data.code == -1){
+          this.$toast({
+            message:"删 除 失 败"
+          });
+        }
+      });
+    },
     //显示购物车商品
     loadCart(){
       var url = "loadCart";
