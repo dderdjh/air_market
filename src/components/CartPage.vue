@@ -15,7 +15,7 @@
     <div class="cartItem" v-for="(item,index) of list" :key="index">
       <img class="cartItemImg" :src="item.img_url" />
       <p class="cartTitle">{{item.title}}</p>
-      <p class="cartPrice">{{item.price}} 兑换量</p>
+      <p class="cartPrice">{{item.price*item.amount}} 兑换量</p>
       <div class="cartCounter">
         <div
           class="counterBtn"
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       list: [],
-      mask: false
+      mask: false,
     };
   },
   created() {
@@ -210,12 +210,12 @@ export default {
   width: 16px;
 }
 .cartPrice {
-  width: 120px;
+  width: 140px;
   font-weight: bold;
   color: #00aaef;
   font-size: 18px;
   position: absolute;
-  left: 49%;
+  left: 40%;
   top: 38%;
 }
 .delBtn {
