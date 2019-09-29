@@ -17,11 +17,21 @@
       <p class="cartTitle">{{item.title}}</p>
       <p class="cartPrice">{{item.price}} 兑换量</p>
       <div class="cartCounter">
-        <div class="counterBtn">
+        <div
+          class="counterBtn"
+          @click="changeAmount($event,1)"
+          :data-cid="item.cid"
+          :data-amount="item.amount"
+        >
           <img src="../assets/jia.png" />
         </div>
         <span class="counterNum">{{item.amount}}</span>
-        <div class="counterBtn">
+        <div
+          class="counterBtn"
+          @click="changeAmount($event,-1)"
+          :data-cid="item.cid"
+          :data-amount="item.amount"
+        >
           <img src="../assets/jian.png" />
         </div>
       </div>
@@ -49,31 +59,55 @@ export default {
     this.loadCart();
   },
   methods: {
+    //改变数量数量
+    changeAmount(event, difference) {
+      var amount = event.currentTarget.dataset.amount;
+      if (amount <= 1 && difference == -1) {
+        this.$messagebox({
+          message: "商品不能少于一件,请点击删除键删除商品"
+        });
+        return;
+      } else if (amount >= 99 && difference == 1) {
+        this.$messagebox({
+          message: "最多一次性购买99单位"
+        });
+        return;
+      }
+      var cid = event.currentTarget.dataset.cid;
+      var url = "changeAmount";
+      var obj = {
+        difference,
+        cid
+      };
+      this.axios.get(url, { params: obj }).then(res => {
+        this.loadCart();
+      });
+    },
     //删除指定商品
     delCart(event) {
       //询问是否删除
       var cid = event.currentTarget.dataset.cid;
       this.$messagebox
-      .confirm("确定删除么?")
-      .then(res => {
-        var url = "delCart";
-        var obj = { cid };
-        this.axios.get(url, { params: obj }).then(res => {
-          if (res.data.code == 1) {
-            this.$toast({
-              message: "删 除 成 功",
-              duration: 1000
-            });
-            this.loadCart();
-          } else if (res.data.code == -1) {
-            this.$toast({
-              message: "删 除 失 败",
-              duration: 1000
-            });
-          }
-        }); //删除end
-      })
-      .catch(res => {}); //询问end
+        .confirm("确定删除么?")
+        .then(res => {
+          var url = "delCart";
+          var obj = { cid };
+          this.axios.get(url, { params: obj }).then(res => {
+            if (res.data.code == 1) {
+              this.$toast({
+                message: "删 除 成 功",
+                duration: 1000
+              });
+              this.loadCart();
+            } else if (res.data.code == -1) {
+              this.$toast({
+                message: "删 除 失 败",
+                duration: 1000
+              });
+            }
+          }); //删除end
+        })
+        .catch(res => {}); //询问end
     },
     //显示购物车商品
     loadCart() {
