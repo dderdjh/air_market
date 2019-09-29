@@ -52,7 +52,7 @@ export default {
     return {
       list: [],
       mask: false
-    };
+    }; 
   },
   created() {
     console.log("cart load");
