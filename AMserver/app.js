@@ -172,3 +172,18 @@ server.get("/delCart", (req, res) => {
     }
   });
 });
+
+//功能:改变购物车商品数量
+server.get("/changeAmount",(req,res)=>{
+  var difference = req.query.difference;
+  var cid = req.query.cid;
+  var sql = "UPDATE am_cart SET amount=amount+? WHERE cid=?";
+  pool.query(sql,[difference,cid],(err,result)=>{
+    if (err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"数量修改成功"});
+    }else{
+      res.send({code:1,msg:"修改失败"});
+    }
+  });                         
+});
