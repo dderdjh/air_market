@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       list: [],
-      mask: false,
+      mask: false
     };
   },
   created() {
