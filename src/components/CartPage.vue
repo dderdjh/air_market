@@ -12,8 +12,9 @@
       </div>
     </div>
     <div style="margin-bottom:60px;"></div>
-    <div class="cartItem" v-for="(item,index) of list" :key="index">
-      <img class="cartItemImg" :src="item.img_url" />
+    <div class="cartItem" v-for="(item,index) of list" :key="index" >
+      <img class="cartItemImg" :src="item.img_url" @click="chooseItem" :data-ischecked="item.isChecked" :data-cid="item.cid"/>
+      <img src="../assets/checked.png" class="checkedIcon">
       <p class="cartTitle">{{item.title}}</p>
       <p class="cartPrice">{{item.price*item.amount}} 兑换量</p>
       <div class="cartCounter">
@@ -63,6 +64,12 @@ export default {
     this.loadCart();
   },
   methods: {
+    //选中商品
+    chooseItem(event){
+      var isChecked = event.target.dataset.ischecked;
+      var cid = event.target.dataset.cid;
+      console.log(cid,isChecked);
+    },
     //改变数量数量
     changeAmount(event, difference) {
       var amount = event.currentTarget.dataset.amount;
@@ -228,6 +235,12 @@ export default {
   top: 50%;
   right: 10px;
   margin-top: -11px;
+}
+.checkedIcon{
+  width: 23px;
+  position: absolute;
+  bottom: 3px;
+  left: 85px;
 }
 /* footer */
 .cartFooter {

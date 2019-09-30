@@ -40,7 +40,8 @@ CREATE TABLE am_cart(
   title VARCHAR(128),                    #商品标题
   price DECIMAL(10,2),                   #商品价格
   amount INT,                            #购买数量
-  img_url VARCHAR(128)                   #商品图片
+  img_url VARCHAR(128),                  #商品图片
+  isChecked TINYINT(1)                   #是否被选中
 );
 
 /*********导入数据**********************************************************/
