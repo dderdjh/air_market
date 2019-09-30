@@ -44,6 +44,9 @@
       <span class="chooseAllTxt">全选</span>
       <div class="buyBtn">立 即 兑 换</div>
     </div>
+    <div class="cartTotal">
+      <span>总量: {{this.totalPrice}}</span>
+    </div>
   </div>
 </template>
 <script>
@@ -51,7 +54,8 @@ export default {
   data() {
     return {
       list: [],
-      mask: false
+      mask: false,
+      totalPrice: 123223333
     }; 
   },
   created() {
@@ -281,5 +285,19 @@ export default {
   left: 65px;
   font-weight: bold;
   font-size: 18px;
+}
+.cartTotal{
+  width:150px;
+  height:40px;
+  background: linear-gradient(-90deg, #a6deeaab, #fff0);
+  font-size: 18px;
+  color: #5a5a5a;
+  font-weight: bold;
+  position: fixed;
+  bottom: 129px;
+  right: 0;
+  text-align: right;
+  line-height: 40px;
+  padding-right: 20px;
 }
 </style>
