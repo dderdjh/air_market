@@ -94,17 +94,17 @@ export default {
       if(itemSelected < this.list.length && itemSelected > 0){
         this.selectOnL = true;
         this.selectOnR = false;
-        console.log("至少有一个选中");
+        // console.log("至少有一个选中");
         this.allSelect = false;
       }else if(itemSelected==this.list.length){
         this.selectOnL = true;
         this.selectOnR = true;
-        console.log("全部选中");
+        // console.log("全部选中");
         this.allSelect = true;
       }else{
         this.selectOnL = false;
         this.selectOnR = false;
-        console.log("没有东西选中");
+        // console.log("没有东西选中");
         this.allSelect = false;
       }
     },
