@@ -200,5 +200,26 @@ server.get("/checked",(req,res)=>{
     }else{
       res.send({code:-1,msg:"选中失败"});
     }
-  })
+  });
+});
+
+//功能:购物车商品全选
+server.get("/allSelect",(req,res)=>{
+  var allSelect = req.query.allSelect;
+  var isSelected = 0;
+  //如果从页面拿到的是字符串 "false",则全选,否则全不选
+  if(allSelect=="false"){
+    isSelected = 1;
+  }else{
+    isSelected = 0;
+  }
+  var sql = "UPDATE am_cart SET isChecked=?";
+  pool.query(sql,[isSelected],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"全选中成功"});
+    }else{
+      res.send({code:-1,msg:"全选中失败"});
+    }
+  });
 });

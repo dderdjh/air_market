@@ -14,9 +14,9 @@
     <div style="margin-bottom:60px;"></div>
     <div class="cartItem" v-for="(item,index) of list" :key="index" >
       <img class="cartItemImg" :src="item.img_url" @click="chooseItem" :data-ischecked="item.isChecked" :data-cid="item.cid"/>
-      <img src="../assets/checked.png" class="checkedIcon">
+      <img src="../assets/checked.png" class="checkedIcon" v-show="item.isChecked==1?true:false" >
       <p class="cartTitle">{{item.title}}</p>
-      <p class="cartPrice">{{item.price*item.amount}} 兑换量</p>
+      <p class="cartPrice">{{item.price*item.amount + " 兑换量"}}</p>
       <div class="cartCounter">
         <div
           class="counterBtn"
@@ -40,13 +40,15 @@
     </div>
     <div style="margin-top:55px;"></div>
     <div class="cartFooter">
-      <div class="leftH"></div>
-      <div class="rightH"></div>
-      <span class="chooseAllTxt">全选</span>
+      <label @click="activeAllSelect">
+        <div class="leftH"></div>
+        <div class="rightH"></div>
+        <span class="chooseAllTxt">全选</span>
+      </label>
       <div class="buyBtn">立 即 兑 换</div>
     </div>
     <div class="cartTotal">
-      <span>总量: {{this.totalPrice}}</span>
+      <span>{{this.totalPrice==0?"请点击图片选中商品":`总量: ${this.totalPrice}`}}</span>
     </div>
   </div>
 </template>
@@ -56,19 +58,73 @@ export default {
     return {
       list: [],
       mask: false,
-      totalPrice: 123223333
+      totalPrice:0,
+      allSelect: false
     }; 
+  },
+  updated() {
+    this.calTotal();
+    this.isSelected();
   },
   created() {
     console.log("cart load");
     this.loadCart();
   },
   methods: {
+    //全选功能
+    activeAllSelect(){
+      var allSelect = this.allSelect;
+      var url = "allSelect";
+      var obj ={allSelect};
+      this.axios.get(url,{params:obj})
+      .then(res=>{
+        this.loadCart();
+      });
+    },
+    //检测全选
+    isSelected(){
+      var itemSelected = 0;
+      for(var i = 0;i<this.list.length;i++){
+        if(this.list[i].isChecked ==1){
+          itemSelected++;
+        }
+      }//for end 
+      if(itemSelected < this.list.length && itemSelected > 0){
+        console.log("至少有一个选中");
+        this.allSelect = false;
+      }else if(itemSelected==this.list.length){
+        console.log("全部选中");
+        this.allSelect = true;
+      }else{
+        console.log("没有东西选中");
+        this.allSelect = false;
+      }
+    },
+    //结算总价
+    calTotal(){
+      var totalPrice = 0;
+      for(var i=0;i<this.list.length;i++){
+        if(this.list[i].isChecked == 1){
+          totalPrice +=  this.list[i].amount * this.list[i].price;
+        }
+      }
+      this.totalPrice = totalPrice;
+    },
     //选中商品
     chooseItem(event){
       var isChecked = event.target.dataset.ischecked;
       var cid = event.target.dataset.cid;
-      console.log(cid,isChecked);
+      var amount = event.target.dataset.amount;
+      isChecked==0?isChecked=1:isChecked=0; //判断商品是否已经被选中
+      var url = "checked";
+      var obj={
+        cid,
+        isChecked
+      }
+      this.axios.get(url,{params:obj})
+      .then(res=>{
+        this.loadCart();
+      });
     },
     //改变数量数量
     changeAmount(event, difference) {
@@ -132,7 +188,7 @@ export default {
         }
       });
     }
-  }
+  },//nethods end
 };
 </script>
 <style scoped>
@@ -239,8 +295,8 @@ export default {
 .checkedIcon{
   width: 23px;
   position: absolute;
-  bottom: 3px;
-  left: 85px;
+  bottom: 6px;
+  left: 87px;
 }
 /* footer */
 .cartFooter {
