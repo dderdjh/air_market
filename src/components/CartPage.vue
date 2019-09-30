@@ -41,8 +41,8 @@
     <div style="margin-top:55px;"></div>
     <div class="cartFooter">
       <label @click="activeAllSelect">
-        <div class="leftH"></div>
-        <div class="rightH"></div>
+        <div class="leftH" :class="{'selectStyle':selectOnL}"></div>
+        <div class="rightH" :class="{'selectStyle':selectOnR}"></div>
         <span class="chooseAllTxt">全选</span>
       </label>
       <div class="buyBtn">立 即 兑 换</div>
@@ -59,7 +59,9 @@ export default {
       list: [],
       mask: false,
       totalPrice:0,
-      allSelect: false
+      allSelect: false,
+      selectOnL:false,
+      selectOnR:false
     }; 
   },
   updated() {
@@ -90,12 +92,18 @@ export default {
         }
       }//for end 
       if(itemSelected < this.list.length && itemSelected > 0){
+        this.selectOnL = true;
+        this.selectOnR = false;
         console.log("至少有一个选中");
         this.allSelect = false;
       }else if(itemSelected==this.list.length){
+        this.selectOnL = true;
+        this.selectOnR = true;
         console.log("全部选中");
         this.allSelect = true;
       }else{
+        this.selectOnL = false;
+        this.selectOnR = false;
         console.log("没有东西选中");
         this.allSelect = false;
       }
@@ -332,8 +340,7 @@ export default {
   position: absolute;
 }
 .leftH {
-  background-color: #2193b0;
-  transform: rotate(300deg);
+  transform: rotate(325deg);
   top: 14px;
   left: 27px;
   box-shadow: -3px 0px 16px 0px #b3b3b3;
@@ -342,11 +349,14 @@ export default {
   border-radius: 0 26px 26px 0;
   /* border-right: 1px solid gray; */
   /* border-left: 0; */
-  top: 2px;
-  left: 34px;
-  background-color: #2193b0;
-  transform: rotate(300deg);
+  top: 6px;
+  left: 38px;
+  transform: rotate(325deg);
   box-shadow: 3px 0px 16px 0px #b3b3b3;
+}
+/* 动态添加圆点选中表示 */
+.selectStyle{
+  background-color: #2193b0;
 }
 .chooseAllTxt {
   position: absolute;
@@ -358,7 +368,7 @@ export default {
 .cartTotal{
   width:150px;
   height:40px;
-  background: linear-gradient(-90deg, #a6deeaab, #fff0);
+  background: linear-gradient(-90deg, #a6deea, #fff0);
   font-size: 18px;
   color: #5a5a5a;
   font-weight: bold;
