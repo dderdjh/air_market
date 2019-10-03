@@ -129,7 +129,7 @@ server.get("/addToCart", (req, res) => {
     if (err) throw err;
     if (result.length == 0) {
       //如果没有就加入
-      var sql = `INSERT INTO am_cart (cid,gid,title,price,amount,img_url) VALUES (null,${gid},'${title}',${price},${amount},'${img_url}')`;
+      var sql = `INSERT INTO am_cart (cid,gid,title,price,amount,img_url,isChecked) VALUES (null,${gid},'${title}',${price},${amount},'${img_url}',${0})`;
     } else {
       //如果有就加一
       var sql = `UPDATE am_cart SET amount=amount+1 WHERE gid=${gid}`;
@@ -148,13 +148,78 @@ server.get("/addToCart", (req, res) => {
 
 //功能:显示购物车内容
 server.get("/loadCart", (req, res) => {
-  var sql = "SELECT cid,gid,title,price,amount,img_url FROM am_cart";
+  var sql = "SELECT cid,gid,title,price,amount,img_url,isChecked FROM am_cart";
   pool.query(sql, (err, result) => {
     if (err) throw err;
     if (result.length > 0) {
       res.send({ code: 1, msg: "查询成功", data: result });
     } else {
       res.send({ code: -1, msg: "购物车为空" });
+    }
+  });
+});
+
+//功能:删除购物车内商品
+server.get("/delCart", (req, res) => {
+  var cid = req.query.cid;
+  var sql = "DELETE FROM am_cart WHERE cid=?";
+  pool.query(sql, [cid], (err, result) => {
+    if (err) throw err;
+    if (result.affectedRows > 0) {
+      res.send({ code: 1, msg: "删除成功" });
+    } else {
+      res.send({ code: -1, msg: "删除失败" });
+    }
+  });
+});
+
+//功能:改变购物车商品数量
+server.get("/changeAmount",(req,res)=>{
+  var difference = req.query.difference;
+  var cid = req.query.cid;
+  var sql = "UPDATE am_cart SET amount=amount+? WHERE cid=?";
+  pool.query(sql,[difference,cid],(err,result)=>{
+    if (err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"数量修改成功"});
+    }else{
+      res.send({code:1,msg:"修改失败"});
+    }
+  });                         
+});
+
+//功能:修改是否选中商品
+server.get("/checked",(req,res)=>{
+  var cid = req.query.cid;
+  var isChecked = req.query.isChecked;
+  var sql = "UPDATE am_cart SET isChecked=? WHERE cid=?";
+  pool.query(sql,[isChecked,cid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"选中成功"});
+    }else{
+      res.send({code:-1,msg:"选中失败"});
+    }
+  });
+});
+
+//功能:购物车商品全选
+server.get("/allSelect",(req,res)=>{
+  var allSelect = req.query.allSelect;
+  var isSelected = 0;
+  //如果从页面拿到的是字符串 "false",则全选,否则全不选
+  if(allSelect=="false"){
+    isSelected = 1;
+  }else{
+    isSelected = 0;
+  }
+  var sql = "UPDATE am_cart SET isChecked=?";
+  pool.query(sql,[isSelected],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"全选中成功"});
+    }else{
+      res.send({code:-1,msg:"全选中失败"});
     }
   });
 });

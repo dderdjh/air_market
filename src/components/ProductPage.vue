@@ -87,7 +87,8 @@ export default {
       .then(res=>{
         if (res.data.code == 1){
           this.$toast({
-            message: "添 加 成 功"
+            message: "添 加 成 功",
+            duration: 1000
           });
         }else{
           console.log(res,'add nonononok');
@@ -101,7 +102,7 @@ export default {
 .porductMask{
   width: 100%;
   height:100%;
-  background:   #cbecfb;
+  background:#cbecfb;
   position: fixed;
   margin:-10px;
   display:flex;
