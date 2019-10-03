@@ -70,8 +70,8 @@ export default {
   margin: 10px 0 10px 0;
 }
 .agreement {
-  align-self: flex-start;
-  margin-left: 65px;
+  align-self: center;
+  margin-left: -132px;
 }
 .regBtn {
   width: 286px;
