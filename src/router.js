@@ -6,6 +6,8 @@ import Login from "./views/Login.vue"
 import Reg from "./views/Reg.vue"
 //主页
 import Index from "./views/Index.vue"
+//购买页面
+import BuyPage from "./views/BuyPage.vue"
 
 ///==========组件测试
 import CartPage from "./components/CartPage.vue"
@@ -35,6 +37,11 @@ export default new Router({
       name: "CartPage",
       component: CartPage,
       
+    },
+    {
+      path:"/BuyPage",
+      name:"buypage",
+      component:BuyPage,
     }
   ],
   
